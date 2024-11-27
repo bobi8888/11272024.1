@@ -1,4 +1,5 @@
 #include "utils.h"
+#include "Mouse.h"
 
 void main() {
 //WINDOW
@@ -14,15 +15,26 @@ void main() {
 //EVENT
 	sf::Event event{};
 
+//MOUSE
+	Mouse myMouse;
+	sf::Vector2f mousePosition;
+
+//GAME LOOP
 	while (window.isOpen())	{
-		while (window.pollEvent(event))
-		{
-			//what else goes on in here?
+
+		//DEV TOOLS
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
+			cout << "\nx is :" << mousePosition.x << " y is :" << mousePosition.y;
+		}
+
+		window.display();
+		window.clear();
+
+		mousePosition = myMouse.getPosition(window);
+
+		while (window.pollEvent(event))	{
 			if (event.type == sf::Event::Closed) {
 				window.close();
-			//	Log.open(logFileName, ios::app);//appends the log
-			//	Log << timestamp.getTimeString() << " : Window closed \n";
-			//	Log.close();
 			}
 		}
 	}
