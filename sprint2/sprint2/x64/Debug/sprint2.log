@@ -1,2 +1,13 @@
 ﻿  sprint2.cpp
+C:\Users\1stBuild\Desktop\1127test\take2\GitRemoteCon\sprint2\sprint2\sprint2.cpp(3,6): warning C4326: return type of 'main' should be 'int' instead of 'void'
+C:\Users\1stBuild\Desktop\1127test\take2\GitRemoteCon\sprint2\sprint2\sprint2.cpp(12,53): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\1stBuild\Desktop\1127test\take2\GitRemoteCon\sprint2\sprint2\sprint2.cpp(12,53): warning C4244:         with
+C:\Users\1stBuild\Desktop\1127test\take2\GitRemoteCon\sprint2\sprint2\sprint2.cpp(12,53): warning C4244:         [
+C:\Users\1stBuild\Desktop\1127test\take2\GitRemoteCon\sprint2\sprint2\sprint2.cpp(12,53): warning C4244:             T=float
+C:\Users\1stBuild\Desktop\1127test\take2\GitRemoteCon\sprint2\sprint2\sprint2.cpp(12,53): warning C4244:         ]
+C:\Users\1stBuild\Desktop\1127test\take2\GitRemoteCon\sprint2\sprint2\sprint2.cpp(12,39): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\1stBuild\Desktop\1127test\take2\GitRemoteCon\sprint2\sprint2\sprint2.cpp(12,39): warning C4244:         with
+C:\Users\1stBuild\Desktop\1127test\take2\GitRemoteCon\sprint2\sprint2\sprint2.cpp(12,39): warning C4244:         [
+C:\Users\1stBuild\Desktop\1127test\take2\GitRemoteCon\sprint2\sprint2\sprint2.cpp(12,39): warning C4244:             T=float
+C:\Users\1stBuild\Desktop\1127test\take2\GitRemoteCon\sprint2\sprint2\sprint2.cpp(12,39): warning C4244:         ]
   sprint2.vcxproj -> C:\Users\1stBuild\Desktop\1127test\take2\GitRemoteCon\sprint2\x64\Debug\sprint2.exe
