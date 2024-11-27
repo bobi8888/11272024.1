@@ -1,0 +1,2 @@
+﻿  sprint2.cpp
+LINK : fatal error LNK1181: cannot open input file 'sfml-system-2.lib'
