@@ -16,21 +16,21 @@ void main() {
 	sf::Event event{};
 
 //MOUSE
-	Mouse myMouse;
-	sf::Vector2f mousePosition;
+	Mouse* myMouse = new Mouse();
+
+//SFX
+	sf::Sound* sfx = new sf::Sound;
 
 //GAME LOOP
 	while (window.isOpen())	{
 
 		//DEV TOOLS
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
-			cout << "\nx is :" << mousePosition.x << " y is :" << mousePosition.y;
+			cout << "\nx is :" << myMouse->getPosition(window).x << " y is :" << myMouse->getPosition(window).y;
 		}
 
 		window.display();
 		window.clear();
-
-		mousePosition = myMouse.getPosition(window);
 
 		while (window.pollEvent(event))	{
 			if (event.type == sf::Event::Closed) {
