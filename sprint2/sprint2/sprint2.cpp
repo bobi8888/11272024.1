@@ -4,6 +4,8 @@
 #include "Path.h"
 #include "Enemy.h"
 #include "Wave.h"
+#include "Bullet.h"
+#include "Tower.h"
 
 void main() {
 //WINDOW
@@ -34,6 +36,10 @@ frameClock->restart();
 
 sf::Clock* waveClock = new sf::Clock;
 waveClock->restart();
+
+sf::Clock* buildClock = new sf::Clock;
+buildClock->restart();
+
 //GAME LOOP
 
 int i = 0;
@@ -52,16 +58,20 @@ pointsMap[3] = point4;
 
 Path testPath(100, 100, pointsMap);
 
-sf::Sprite testSprite;
-sf::Texture testTexture;
-testTexture.loadFromFile("bug.png");
-testSprite.setTexture(testTexture);
-testSprite.setPosition(testPath.getStart());
+//sf::Sprite testSprite;
+//sf::Texture testTexture;
+//testTexture.loadFromFile("bug.png");
+//testSprite.setTexture(testTexture);
+//testSprite.setPosition(testPath.getStart());
 
 Enemy* testEnemy = new Enemy("bug.png", testPath.getStart());
 
 Wave* testWave = new Wave(*testEnemy);
 int frameNum = 0;
+
+bool canBuild = false;
+vector <Tower*> towers;
+vector <Bullet*> bullets;
 
 	while (window.isOpen())	{
 
@@ -76,6 +86,25 @@ int frameNum = 0;
 		window.display();
 		window.clear();
 
+		if (buildClock->getElapsedTime().asSeconds() > 3) {
+			canBuild = true;
+		}
+
+		if (myMouse->validLeftClick(event) && canBuild) {
+			towers.push_back(new Tower("switch.png", myMouse->getPosition(window)));
+			buildClock->restart();
+			canBuild = false;
+		}
+
+		for (int i = 0; i < towers.size(); i++) {
+
+			window.draw(towers.at(i)->getSprite());
+
+			if (towers.at(i)->canFire()) {
+				bullets.push_back(new Bullet ());
+			}
+		}
+
 		if (waveClock->getElapsedTime().asSeconds() > 1 && testWave->getEnemyNum() < 5) {
 			waveClock->restart();
 			testWave->activateNextEnemy();
@@ -88,9 +117,7 @@ int frameNum = 0;
 
 		if (frameNum > 60) frameNum = 0;
 
-		if (myMouse->validLeftClick(event)) {
-			cout << i++ << "mouse button released \n";
-		}
+
 
 		while (window.pollEvent(event))	{
 			if (event.type == sf::Event::Closed) {
