@@ -1,13 +1,24 @@
-﻿  sprint2.cpp
-C:\Users\1stBuild\Desktop\1127test\take2\GitRemoteCon\sprint2\sprint2\sprint2.cpp(4,6): warning C4326: return type of 'main' should be 'int' instead of 'void'
-C:\Users\1stBuild\Desktop\1127test\take2\GitRemoteCon\sprint2\sprint2\sprint2.cpp(13,53): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-C:\Users\1stBuild\Desktop\1127test\take2\GitRemoteCon\sprint2\sprint2\sprint2.cpp(13,53): warning C4244:         with
-C:\Users\1stBuild\Desktop\1127test\take2\GitRemoteCon\sprint2\sprint2\sprint2.cpp(13,53): warning C4244:         [
-C:\Users\1stBuild\Desktop\1127test\take2\GitRemoteCon\sprint2\sprint2\sprint2.cpp(13,53): warning C4244:             T=float
-C:\Users\1stBuild\Desktop\1127test\take2\GitRemoteCon\sprint2\sprint2\sprint2.cpp(13,53): warning C4244:         ]
-C:\Users\1stBuild\Desktop\1127test\take2\GitRemoteCon\sprint2\sprint2\sprint2.cpp(13,39): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-C:\Users\1stBuild\Desktop\1127test\take2\GitRemoteCon\sprint2\sprint2\sprint2.cpp(13,39): warning C4244:         with
-C:\Users\1stBuild\Desktop\1127test\take2\GitRemoteCon\sprint2\sprint2\sprint2.cpp(13,39): warning C4244:         [
-C:\Users\1stBuild\Desktop\1127test\take2\GitRemoteCon\sprint2\sprint2\sprint2.cpp(13,39): warning C4244:             T=float
-C:\Users\1stBuild\Desktop\1127test\take2\GitRemoteCon\sprint2\sprint2\sprint2.cpp(13,39): warning C4244:         ]
+﻿  Path.cpp
+  sprint2.cpp
+C:\Users\1stBuild\Desktop\1127test\take2\GitRemoteCon\sprint2\sprint2\sprint2.cpp(6,6): warning C4326: return type of 'main' should be 'int' instead of 'void'
+C:\Users\1stBuild\Desktop\1127test\take2\GitRemoteCon\sprint2\sprint2\sprint2.cpp(15,53): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\1stBuild\Desktop\1127test\take2\GitRemoteCon\sprint2\sprint2\sprint2.cpp(15,53): warning C4244:         with
+C:\Users\1stBuild\Desktop\1127test\take2\GitRemoteCon\sprint2\sprint2\sprint2.cpp(15,53): warning C4244:         [
+C:\Users\1stBuild\Desktop\1127test\take2\GitRemoteCon\sprint2\sprint2\sprint2.cpp(15,53): warning C4244:             T=float
+C:\Users\1stBuild\Desktop\1127test\take2\GitRemoteCon\sprint2\sprint2\sprint2.cpp(15,53): warning C4244:         ]
+C:\Users\1stBuild\Desktop\1127test\take2\GitRemoteCon\sprint2\sprint2\sprint2.cpp(15,39): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\1stBuild\Desktop\1127test\take2\GitRemoteCon\sprint2\sprint2\sprint2.cpp(15,39): warning C4244:         with
+C:\Users\1stBuild\Desktop\1127test\take2\GitRemoteCon\sprint2\sprint2\sprint2.cpp(15,39): warning C4244:         [
+C:\Users\1stBuild\Desktop\1127test\take2\GitRemoteCon\sprint2\sprint2\sprint2.cpp(15,39): warning C4244:             T=float
+C:\Users\1stBuild\Desktop\1127test\take2\GitRemoteCon\sprint2\sprint2\sprint2.cpp(15,39): warning C4244:         ]
+  Wave.cpp
+C:\Users\1stBuild\Desktop\1127test\take2\GitRemoteCon\sprint2\sprint2\Wave.h(7,9): warning C4200: nonstandard extension used: zero-sized array in struct/union
+  (compiling source file 'Wave.cpp')
+      C:\Users\1stBuild\Desktop\1127test\take2\GitRemoteCon\sprint2\sprint2\Wave.h(7,9):
+      This member will be ignored by a defaulted constructor or copy/move assignment operator
+  
+C:\Users\1stBuild\Desktop\1127test\take2\GitRemoteCon\sprint2\sprint2\Wave.h(5,21): warning C4305: 'initializing': truncation from 'double' to 'float'
+  (compiling source file 'Wave.cpp')
+  
+  Generating Code...
   sprint2.vcxproj -> C:\Users\1stBuild\Desktop\1127test\take2\GitRemoteCon\sprint2\x64\Debug\sprint2.exe

@@ -1,5 +1,8 @@
 #pragma once
-class Tower
-{
+class Tower {
+	private:
+
+	public:
+
 };
 

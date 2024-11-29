@@ -1,5 +1,7 @@
 #include "utils.h"
+#include "Point.h"
 #include "Mouse.h"
+#include "Path.h"
 
 void main() {
 //WINDOW
@@ -21,16 +23,40 @@ void main() {
 //SFX
 	sf::Sound* sfx = new sf::Sound;
 
+//CLOCK measures elapsed time
+//TIME is the time value 
+//sf::Clock sets sf::time
+
+sf::Clock* waveClock = new sf::Clock;
+waveClock->restart();
 //GAME LOOP
+
+int i = 0;
+//bool leftClicked = false;
+
+Point point1('x', 100.f);
+Point point2('y', 200.f);
+
+map <int, Point> testMap;
+testMap[0] = point1;
+testMap[1] = point2;
+
+Path testPath(50,50,testMap);
+
 	while (window.isOpen())	{
 
 		//DEV TOOLS
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
-			cout << "\nx is :" << myMouse->getPosition(window).x << " y is :" << myMouse->getPosition(window).y;
+			//cout << "\nx is :" << myMouse->getPosition(window).x << " y is :" << myMouse->getPosition(window).y;
+			cout << waveClock->getElapsedTime().asMilliseconds() << "\n";
 		}
 
 		window.display();
 		window.clear();
+
+		if (myMouse->validLeftClick(event)) {
+			cout << i++ << "mouse button released \n";
+		}
 
 		while (window.pollEvent(event))	{
 			if (event.type == sf::Event::Closed) {

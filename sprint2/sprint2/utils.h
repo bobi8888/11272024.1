@@ -9,3 +9,5 @@
 #include <iostream>
 
 using std::cout;
+using std::string;
+using std::map;
