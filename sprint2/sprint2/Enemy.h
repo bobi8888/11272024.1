@@ -5,8 +5,10 @@ class Enemy {
 		sf::Texture Texture;
 		sf::Sprite Sprite;
 		float HP = 5.f;
-		float Speed = 0.5;
+		float Speed = 1.5;
 		int PathPosition = 0;
+		bool IsActive = false;
+		bool IsAlive = true;
 
 	public:
 		Enemy(){}
@@ -15,7 +17,11 @@ class Enemy {
 		int getPathPositon();
 		void incrementPathPosition();
 		void updateX();
+		float getX();
+		float getY();
 		void updateY();
+		bool getIsActive();
+		void setIsActive(bool isActive);
 		~Enemy(){}
 };
 

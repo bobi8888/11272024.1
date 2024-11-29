@@ -1,17 +1,18 @@
 #pragma once
 class Wave {
 	private:
-		float WaveSpeed = 0.1;
-		//Path WavePath;
-		const int Size = 5;
 		Enemy Enemies[5];
-
+		const int Size = 5;
+		float WaveSpeed = 0.1;
+		int EnemyNum = 0;
 	public:
 		Wave(){}
 		Wave(Enemy enemy);
-		void updateEnemyPositions(Path path);
+		void updateActiveEnemyPositions(Path path);
 		int getSize();
 		Enemy getEnemy(int enemy);
+		void activateNextEnemy();
+		int getEnemyNum();
 		~Wave(){}
 };
 

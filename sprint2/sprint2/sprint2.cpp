@@ -29,6 +29,9 @@ void main() {
 //TIME is the time value 
 //sf::Clock sets sf::time
 
+sf::Clock* frameClock = new sf::Clock;
+frameClock->restart();
+
 sf::Clock* waveClock = new sf::Clock;
 waveClock->restart();
 //GAME LOOP
@@ -36,12 +39,16 @@ waveClock->restart();
 int i = 0;
 //bool leftClicked = false;
 
-Point point1('x', 100.f);
-Point point2('y', 200.f);
+Point point1('x', 200.f);
+Point point2('y', 500.f);
+Point point3('x', 300.f);
+Point point4('y', 550.f);
 
 map <int, Point> pointsMap;
 pointsMap[0] = point1;
 pointsMap[1] = point2;
+pointsMap[2] = point3;
+pointsMap[3] = point4;
 
 Path testPath(100, 100, pointsMap);
 
@@ -69,9 +76,14 @@ int frameNum = 0;
 		window.display();
 		window.clear();
 
-		if (waveClock->getElapsedTime().asMilliseconds() > 16.66) {
+		if (waveClock->getElapsedTime().asSeconds() > 1 && testWave->getEnemyNum() < 5) {
 			waveClock->restart();
-			testWave->updateEnemyPositions(testPath);
+			testWave->activateNextEnemy();
+		}
+
+		if (frameClock->getElapsedTime().asMilliseconds() > 16.66) {
+			frameClock->restart();
+			testWave->updateActiveEnemyPositions(testPath);
 		}
 
 		if (frameNum > 60) frameNum = 0;
