@@ -2,6 +2,8 @@
 #include "Point.h"
 #include "Mouse.h"
 #include "Path.h"
+#include "Enemy.h"
+#include "Wave.h"
 
 void main() {
 //WINDOW
@@ -37,11 +39,22 @@ int i = 0;
 Point point1('x', 100.f);
 Point point2('y', 200.f);
 
-map <int, Point> testMap;
-testMap[0] = point1;
-testMap[1] = point2;
+map <int, Point> pointsMap;
+pointsMap[0] = point1;
+pointsMap[1] = point2;
 
-Path testPath(50,50,testMap);
+Path testPath(100, 100, pointsMap);
+
+sf::Sprite testSprite;
+sf::Texture testTexture;
+testTexture.loadFromFile("bug.png");
+testSprite.setTexture(testTexture);
+testSprite.setPosition(testPath.getStart());
+
+Enemy* testEnemy = new Enemy("bug.png", testPath.getStart());
+
+Wave* testWave = new Wave(*testEnemy);
+int frameNum = 0;
 
 	while (window.isOpen())	{
 
@@ -50,9 +63,18 @@ Path testPath(50,50,testMap);
 			//cout << "\nx is :" << myMouse->getPosition(window).x << " y is :" << myMouse->getPosition(window).y;
 			cout << waveClock->getElapsedTime().asMilliseconds() << "\n";
 		}
-
+		for (int i = 0; i < testWave->getSize(); i++) {
+			window.draw(testWave->getEnemy(i).getSprite());
+		}
 		window.display();
 		window.clear();
+
+		if (waveClock->getElapsedTime().asMilliseconds() > 16.66) {
+			waveClock->restart();
+			testWave->updateEnemyPositions(testPath);
+		}
+
+		if (frameNum > 60) frameNum = 0;
 
 		if (myMouse->validLeftClick(event)) {
 			cout << i++ << "mouse button released \n";

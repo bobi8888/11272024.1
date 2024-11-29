@@ -1,11 +1,16 @@
 #include "utils.h"
 #include "Path.h"
 
-Path::Path(float x, float y, map <int, Point> coords) {
+Path::Path(float x, float y, map <int, Point> pointsMap) {
 	Start = sf::Vector2f(x,y);
-	Coords = coords;
+	PointsMap = pointsMap;
 }
-
-map<int, Point> Path::getCoords() {
-	return Coords;
+sf::Vector2f Path::getStart() {
+	return Start;
+}
+map<int, Point> Path::getPointsMap() {
+	return PointsMap;
+}
+Point Path::getPoint(int point) {
+	return PointsMap[point];
 }

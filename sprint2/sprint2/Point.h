@@ -5,5 +5,6 @@ struct Point {
 	float Dist;
 	Point(){}
 	Point(char dir, float dist);
+	char getDir();
 	~Point(){}
 };
