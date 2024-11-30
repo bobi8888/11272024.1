@@ -1,4 +1,7 @@
 #pragma once
+#include "Path.h"
+#include "Enemy.h"
+
 class Wave {
 	private:
 		Enemy Enemies[5];

@@ -1,9 +1,8 @@
 #include "utils.h"
-#include "Enemy.h"
-#include "Path.h"
 #include "Wave.h"
 
 Wave::Wave(Enemy enemy) {
+	//dynamic memory allocation using ptr
 	for (int i = 0; i < 5; i++)
 		Enemies[i] = enemy;
 }

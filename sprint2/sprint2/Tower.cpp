@@ -1,4 +1,5 @@
 #include "utils.h"
+#include "Wave.h"
 #include "Bullet.h"
 #include "Tower.h"
 
@@ -22,7 +23,10 @@ bool Tower::canFire() {
 		return false;
 	}
 }
-
 sf::Vector2f Tower::getPosition() {
 	return Sprite.getPosition();
+}
+
+float Tower::getRange() {
+	return Range;
 }

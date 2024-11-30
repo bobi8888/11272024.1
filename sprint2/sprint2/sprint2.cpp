@@ -58,12 +58,6 @@ pointsMap[3] = point4;
 
 Path testPath(100, 100, pointsMap);
 
-//sf::Sprite testSprite;
-//sf::Texture testTexture;
-//testTexture.loadFromFile("bug.png");
-//testSprite.setTexture(testTexture);
-//testSprite.setPosition(testPath.getStart());
-
 Enemy* testEnemy = new Enemy("bug.png", testPath.getStart());
 
 Wave* testWave = new Wave(*testEnemy);
@@ -73,6 +67,13 @@ bool canBuild = false;
 vector <Tower*> towers;
 vector <Bullet*> bullets;
 
+sf::Texture bgTexture;
+bgTexture.loadFromFile("intoRed.png");
+sf::Sprite background;
+background.setTexture(bgTexture);
+background.setOrigin(background.getLocalBounds().width / 2, background.getLocalBounds().height / 2);
+background.setPosition(centerOfScreen);
+
 	while (window.isOpen())	{
 
 		//DEV TOOLS
@@ -80,15 +81,37 @@ vector <Bullet*> bullets;
 			//cout << "\nx is :" << myMouse->getPosition(window).x << " y is :" << myMouse->getPosition(window).y;
 			cout << waveClock->getElapsedTime().asMilliseconds() << "\n";
 		}
-		for (int i = 0; i < testWave->getSize(); i++) {
-			window.draw(testWave->getEnemy(i).getSprite());
-		}
+
 		window.display();
 		window.clear();
 
-		if (buildClock->getElapsedTime().asSeconds() > 3) {
-			canBuild = true;
+		window.draw(background);
+
+		for (int i = 0; i < testWave->getSize(); i++) {
+			window.draw(testWave->getEnemy(i).getSprite());
 		}
+
+		//update bullets
+		//need to destroy bullets if they are not on screen
+		//bullets firing in the wrong direction
+
+		for (int i = 0; i < bullets.size(); i++) {
+
+			if (!background.getGlobalBounds().contains(bullets.at(i)->getSprite().getPosition())) 
+
+				bullets.at(i)->~Bullet();
+			
+		}
+		for (int i = 0; i < bullets.size(); i++) {
+
+			bullets.at(i)->updatePosition();
+
+			window.draw(bullets.at(i)->getSprite());
+		}
+
+		if (buildClock->getElapsedTime().asSeconds() > 3) 
+
+			canBuild = true;
 
 		if (myMouse->validLeftClick(event) && canBuild) {
 			towers.push_back(new Tower("switch.png", myMouse->getPosition(window)));
@@ -101,7 +124,32 @@ vector <Bullet*> bullets;
 			window.draw(towers.at(i)->getSprite());
 
 			if (towers.at(i)->canFire()) {
-				bullets.push_back(new Bullet ());
+				float targetDist = 10000.f;
+				float hyp = 0.f;
+				sf::Vector2f enemyPosition;
+
+				for (int j = 0; j < testWave->getSize(); j++) {
+
+					if (testWave->getEnemy(j).getIsActive()) {
+						hyp = sqrt(pow(abs(towers.at(i)->getPosition().x - testWave->getEnemy(j).getX()), 2) + pow(abs(towers.at(i)->getPosition().y - testWave->getEnemy(j).getY()), 2));
+					}
+
+					if (hyp < towers.at(i)->getRange()) {
+
+						if (hyp < targetDist) {
+							targetDist = hyp;
+							enemyPosition = testWave->getEnemy(j).getSprite().getPosition();
+						}
+						else {
+							targetDist = targetDist;
+						}
+
+						Bullet* bullet = new Bullet("key.png", towers.at(i)->getPosition(), enemyPosition);
+						cout << "\n BANG! " << j;
+						cout << "\n Bullets Size " << bullets.size();
+						bullets.push_back(bullet);
+					}
+				}
 			}
 		}
 
@@ -110,14 +158,12 @@ vector <Bullet*> bullets;
 			testWave->activateNextEnemy();
 		}
 
+		if (frameNum > 60) frameNum = 0;
+
 		if (frameClock->getElapsedTime().asMilliseconds() > 16.66) {
 			frameClock->restart();
 			testWave->updateActiveEnemyPositions(testPath);
 		}
-
-		if (frameNum > 60) frameNum = 0;
-
-
 
 		while (window.pollEvent(event))	{
 			if (event.type == sf::Event::Closed) {
