@@ -91,22 +91,22 @@ background.setPosition(centerOfScreen);
 			window.draw(testWave->getEnemy(i).getSprite());
 		}
 
-		//update bullets
-		//need to destroy bullets if they are not on screen
-		//bullets firing in the wrong direction
-
-		for (int i = 0; i < bullets.size(); i++) {
-
-			if (!background.getGlobalBounds().contains(bullets.at(i)->getSprite().getPosition())) 
-
-				bullets.at(i)->~Bullet();
-			
-		}
 		for (int i = 0; i < bullets.size(); i++) {
 
 			bullets.at(i)->updatePosition();
 
 			window.draw(bullets.at(i)->getSprite());
+
+			for (int j = 0; j < testWave->getSize(); j++) {
+				if (bullets.at(i)->hitEnemy(testWave->getEnemy(j).getSprite().getGlobalBounds())) {
+					cout << "HIT!";
+					bullets.at(i)->setIsActive(false);
+					break;
+				}
+			}
+			
+			if (!background.getGlobalBounds().contains(bullets.at(i)->getSprite().getPosition()) || !bullets.at(i)->getIsActive())
+				bullets.erase(bullets.begin() + i);
 		}
 
 		if (buildClock->getElapsedTime().asSeconds() > 3) 
@@ -122,8 +122,9 @@ background.setPosition(centerOfScreen);
 		for (int i = 0; i < towers.size(); i++) {
 
 			window.draw(towers.at(i)->getSprite());
+			towers.at(i)->updateCanFire();
 
-			if (towers.at(i)->canFire()) {
+			if (towers.at(i)->getCanFire()) {
 				float targetDist = 10000.f;
 				float hyp = 0.f;
 				sf::Vector2f enemyPosition;
@@ -134,7 +135,7 @@ background.setPosition(centerOfScreen);
 						hyp = sqrt(pow(abs(towers.at(i)->getPosition().x - testWave->getEnemy(j).getX()), 2) + pow(abs(towers.at(i)->getPosition().y - testWave->getEnemy(j).getY()), 2));
 					}
 
-					if (hyp < towers.at(i)->getRange()) {
+					if (hyp < towers.at(i)->getRange() && towers.at(i)->getCanFire()) {
 
 						if (hyp < targetDist) {
 							targetDist = hyp;
@@ -148,10 +149,13 @@ background.setPosition(centerOfScreen);
 						cout << "\n BANG! " << j;
 						cout << "\n Bullets Size " << bullets.size();
 						bullets.push_back(bullet);
+						towers.at(i)->setCanFire(false);
 					}
 				}
 			}
 		}
+
+		//for ()
 
 		if (waveClock->getElapsedTime().asSeconds() > 1 && testWave->getEnemyNum() < 5) {
 			waveClock->restart();

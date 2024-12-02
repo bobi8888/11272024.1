@@ -14,13 +14,19 @@ Tower::Tower(string sprite, sf::Vector2f position) {
 sf::Sprite Tower::getSprite() {
 	return Sprite;
 }
-bool Tower::canFire() {
+bool Tower::getCanFire() {
+	return CanFire;
+}
+void Tower::setCanFire(bool canFire) {
+	CanFire = canFire;
+}
+void Tower::updateCanFire() {
 	if (Clock.getElapsedTime().asMilliseconds() > FireRate) {
 		Clock.restart();
-		return true;
+		setCanFire(true);
 	}
 	else {
-		return false;
+		setCanFire(false);
 	}
 }
 sf::Vector2f Tower::getPosition() {
