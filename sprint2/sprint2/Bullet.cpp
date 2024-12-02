@@ -31,6 +31,9 @@ bool Bullet::getIsActive() {
 void Bullet::setIsActive(bool isActive) {
 	IsActive = isActive;
 }
+float Bullet::getDamage() {
+	return Damage;
+}
 sf::Sprite Bullet::getSprite() {
 	return Sprite;
 }

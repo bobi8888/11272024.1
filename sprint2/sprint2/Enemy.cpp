@@ -34,3 +34,12 @@ bool Enemy::getIsActive() {
 void Enemy::setIsActive(bool isActive) {
 	IsActive = isActive;
 }
+
+void Enemy::setHP(float damage) {
+	HP = HP - damage;
+}
+
+void Enemy::hpCheckForActivity() {
+	if (HP <= 0)
+		IsActive = false;
+}

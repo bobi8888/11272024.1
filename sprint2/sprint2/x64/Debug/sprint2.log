@@ -13,5 +13,5 @@ C:\Users\1stBuild\Desktop\1127test\take2\GitRemoteCon\sprint2\sprint2\sprint2.cp
 C:\Users\1stBuild\Desktop\1127test\take2\GitRemoteCon\sprint2\sprint2\sprint2.cpp(19,39): warning C4244:         [
 C:\Users\1stBuild\Desktop\1127test\take2\GitRemoteCon\sprint2\sprint2\sprint2.cpp(19,39): warning C4244:             T=float
 C:\Users\1stBuild\Desktop\1127test\take2\GitRemoteCon\sprint2\sprint2\sprint2.cpp(19,39): warning C4244:         ]
-C:\Users\1stBuild\Desktop\1127test\take2\GitRemoteCon\sprint2\sprint2\sprint2.cpp(135,17): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\1stBuild\Desktop\1127test\take2\GitRemoteCon\sprint2\sprint2\sprint2.cpp(145,17): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
   sprint2.vcxproj -> C:\Users\1stBuild\Desktop\1127test\take2\GitRemoteCon\sprint2\x64\Debug\sprint2.exe

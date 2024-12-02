@@ -88,7 +88,12 @@ background.setPosition(centerOfScreen);
 		window.draw(background);
 
 		for (int i = 0; i < testWave->getSize(); i++) {
-			window.draw(testWave->getEnemy(i).getSprite());
+
+			testWave->checkEnemyActivity(i);
+
+			if (testWave->getEnemy(i).getIsActive()) {
+				window.draw(testWave->getEnemy(i).getSprite());
+			}
 		}
 
 		for (int i = 0; i < bullets.size(); i++) {
@@ -98,10 +103,15 @@ background.setPosition(centerOfScreen);
 			window.draw(bullets.at(i)->getSprite());
 
 			for (int j = 0; j < testWave->getSize(); j++) {
-				if (bullets.at(i)->hitEnemy(testWave->getEnemy(j).getSprite().getGlobalBounds())) {
-					cout << "HIT!";
-					bullets.at(i)->setIsActive(false);
-					break;
+
+				if (testWave->getEnemy(j).getIsActive()) {
+
+					if (bullets.at(i)->hitEnemy(testWave->getEnemy(j).getSprite().getGlobalBounds())) {
+						cout << "HIT!";
+						bullets.at(i)->setIsActive(false);
+						testWave->setEnemyHP(j, bullets.at(i)->getDamage());
+						break;
+					}
 				}
 			}
 			
@@ -109,7 +119,7 @@ background.setPosition(centerOfScreen);
 				bullets.erase(bullets.begin() + i);
 		}
 
-		if (buildClock->getElapsedTime().asSeconds() > 3) 
+		if (buildClock->getElapsedTime().asSeconds() > 1) 
 
 			canBuild = true;
 
@@ -133,6 +143,9 @@ background.setPosition(centerOfScreen);
 
 					if (testWave->getEnemy(j).getIsActive()) {
 						hyp = sqrt(pow(abs(towers.at(i)->getPosition().x - testWave->getEnemy(j).getX()), 2) + pow(abs(towers.at(i)->getPosition().y - testWave->getEnemy(j).getY()), 2));
+					}
+					else {
+						hyp = 10000.f;
 					}
 
 					if (hyp < towers.at(i)->getRange() && towers.at(i)->getCanFire()) {

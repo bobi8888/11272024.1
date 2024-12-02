@@ -16,6 +16,7 @@ class Bullet {
 		bool hitEnemy(sf::FloatRect enemyBB);
 		bool getIsActive();
 		void setIsActive(bool isActive);
+		float getDamage();
 		~Bullet() {}
 };
 

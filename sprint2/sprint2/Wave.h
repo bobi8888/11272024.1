@@ -16,6 +16,8 @@ class Wave {
 		Enemy getEnemy(int enemy);
 		void activateNextEnemy();
 		int getEnemyNum();
+		void checkEnemyActivity(int enemy);
+		void setEnemyHP(int enemy, float damage);
 		~Wave(){}
 };
 

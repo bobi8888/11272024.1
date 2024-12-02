@@ -44,3 +44,9 @@ void Wave::activateNextEnemy() {
 int Wave::getEnemyNum() {
 	return EnemyNum;
 }
+void Wave::checkEnemyActivity(int enemy) {
+	Enemies[enemy].hpCheckForActivity();
+}
+void Wave::setEnemyHP(int enemy, float damage) {
+	Enemies[enemy].setHP(damage);
+}
