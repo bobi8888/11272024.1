@@ -45,7 +45,14 @@ buildClock->restart();
 
 //GAME LOOP
 
-int i = 0;
+//int i = 0;
+
+sf::Texture chessTexture;
+chessTexture.loadFromFile("chessPiece.png");
+sf::Sprite chess;
+chess.setTexture(chessTexture);
+chess.setOrigin(chess.getLocalBounds().width / 2, chess.getLocalBounds().height / 2);
+chess.setPosition(sf::Vector2f(windowXY - 25, windowXY / 2));
 
 Point point1('x', 200.f);
 Point point2('y', 500.f);
@@ -58,7 +65,7 @@ pointsMap[1] = point2;
 pointsMap[2] = point3;
 pointsMap[3] = point4;
 
-Path testPath(100, 100, pointsMap);
+Path testPath(100, 100, pointsMap, chess.getPosition());
 
 //Enemy* testEnemy = new Enemy("bug.png", testPath.getStart());
 
@@ -75,6 +82,8 @@ background.setTexture(bgTexture);
 background.setOrigin(background.getLocalBounds().width / 2, background.getLocalBounds().height / 2);
 background.setPosition(centerOfScreen);
 
+
+
 //TODO:
 //update to next wave when wave is dead
 //generate next path the next wave will take
@@ -85,13 +94,15 @@ background.setPosition(centerOfScreen);
 		//DEV TOOLS
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
 			//cout << "\nx is :" << myMouse->getPosition(window).x << " y is :" << myMouse->getPosition(window).y;
-			cout << waveClock->getElapsedTime().asMilliseconds() << "\n";
+			//cout << waveClock->getElapsedTime().asMilliseconds() << "\n";
+			testPath.rerollPath(windowXY, 6);
 		}
 
 		window.display();
 		window.clear();
 
 		window.draw(background);
+		window.draw(chess);
 
 		testWave->updateRemainingUnits();
 

@@ -9,8 +9,8 @@ class Path {
 
 	public:
 		Path() {}
-		Path(float x, float y, map <int, Point> point);
-		void rerollPath();
+		Path(float x, float y, map <int, Point> point, sf::Vector2f goal);
+		void rerollPath(int windowY, int numTurns);
 		sf::Vector2f getStart();
 		Point getPoint(int point);
 
