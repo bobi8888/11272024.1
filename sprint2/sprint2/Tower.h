@@ -4,7 +4,7 @@ class Tower {
 		sf::Sprite Sprite;
 		sf::Texture Texture;
 		sf::Clock Clock;
-		float FireRate = 1000.f; //smaller num means faster
+		float FireRate = 1500.f; //smaller num means faster
 		float Range = 700.f;
 		bool CanFire = false;
 		

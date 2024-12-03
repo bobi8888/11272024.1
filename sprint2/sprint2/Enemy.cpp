@@ -35,6 +35,10 @@ void Enemy::setIsActive(bool isActive) {
 	IsActive = isActive;
 }
 
+float Enemy::getHP() {
+	return HP;
+}
+
 void Enemy::setHP(float damage) {
 	HP = HP - damage;
 }
@@ -42,4 +46,16 @@ void Enemy::setHP(float damage) {
 void Enemy::hpCheckForActivity() {
 	if (HP <= 0)
 		IsActive = false;
+}
+
+bool Enemy::isDestroyed() {
+	if (HP <= 0 && IsActive) {
+		IsActive = false;
+		return true;
+	}
+	return false;
+}
+
+void Enemy::healHP() {
+	HP = BaselineHP;
 }

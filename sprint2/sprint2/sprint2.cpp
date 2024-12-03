@@ -34,6 +34,9 @@ void main() {
 sf::Clock* frameClock = new sf::Clock;
 frameClock->restart();
 
+int frameNum = 0;
+
+
 sf::Clock* waveClock = new sf::Clock;
 waveClock->restart();
 
@@ -43,7 +46,6 @@ buildClock->restart();
 //GAME LOOP
 
 int i = 0;
-//bool leftClicked = false;
 
 Point point1('x', 200.f);
 Point point2('y', 500.f);
@@ -58,10 +60,9 @@ pointsMap[3] = point4;
 
 Path testPath(100, 100, pointsMap);
 
-Enemy* testEnemy = new Enemy("bug.png", testPath.getStart());
+//Enemy* testEnemy = new Enemy("bug.png", testPath.getStart());
 
-Wave* testWave = new Wave(*testEnemy);
-int frameNum = 0;
+Wave* testWave = new Wave(5, "bug.png", testPath.getStart());
 
 bool canBuild = false;
 vector <Tower*> towers;
@@ -73,6 +74,11 @@ sf::Sprite background;
 background.setTexture(bgTexture);
 background.setOrigin(background.getLocalBounds().width / 2, background.getLocalBounds().height / 2);
 background.setPosition(centerOfScreen);
+
+//TODO:
+//update to next wave when wave is dead
+//generate next path the next wave will take
+//implement currency for destroying enemeies to buy towers
 
 	while (window.isOpen())	{
 
@@ -87,6 +93,21 @@ background.setPosition(centerOfScreen);
 
 		window.draw(background);
 
+		testWave->updateRemainingUnits();
+
+		//WAVE CLOCK
+		if (waveClock->getElapsedTime().asSeconds() > 1 && testWave->getEnemyNum() < 5) {
+
+			waveClock->restart();
+
+			testWave->activateNextEnemy();
+		}
+
+		if (testWave->getRemainingUnits() == 0) {
+			testWave->resetWave();
+		}
+
+		//LOOP THROUGH WAVE
 		for (int i = 0; i < testWave->getSize(); i++) {
 
 			testWave->checkEnemyActivity(i);
@@ -96,6 +117,7 @@ background.setPosition(centerOfScreen);
 			}
 		}
 
+		//LOOP THROUGH BULLETS
 		for (int i = 0; i < bullets.size(); i++) {
 
 			bullets.at(i)->updatePosition();
@@ -107,7 +129,6 @@ background.setPosition(centerOfScreen);
 				if (testWave->getEnemy(j).getIsActive()) {
 
 					if (bullets.at(i)->hitEnemy(testWave->getEnemy(j).getSprite().getGlobalBounds())) {
-						cout << "HIT!";
 						bullets.at(i)->setIsActive(false);
 						testWave->setEnemyHP(j, bullets.at(i)->getDamage());
 						break;
@@ -129,6 +150,7 @@ background.setPosition(centerOfScreen);
 			canBuild = false;
 		}
 
+		//LOOP THROUGH TOWERS
 		for (int i = 0; i < towers.size(); i++) {
 
 			window.draw(towers.at(i)->getSprite());
@@ -140,6 +162,8 @@ background.setPosition(centerOfScreen);
 				sf::Vector2f enemyPosition;
 
 				for (int j = 0; j < testWave->getSize(); j++) {
+
+					testWave->updateRemainingUnits();
 
 					if (testWave->getEnemy(j).getIsActive()) {
 						hyp = sqrt(pow(abs(towers.at(i)->getPosition().x - testWave->getEnemy(j).getX()), 2) + pow(abs(towers.at(i)->getPosition().y - testWave->getEnemy(j).getY()), 2));
@@ -159,8 +183,6 @@ background.setPosition(centerOfScreen);
 						}
 
 						Bullet* bullet = new Bullet("key.png", towers.at(i)->getPosition(), enemyPosition);
-						cout << "\n BANG! " << j;
-						cout << "\n Bullets Size " << bullets.size();
 						bullets.push_back(bullet);
 						towers.at(i)->setCanFire(false);
 					}
@@ -168,12 +190,7 @@ background.setPosition(centerOfScreen);
 			}
 		}
 
-		//for ()
 
-		if (waveClock->getElapsedTime().asSeconds() > 1 && testWave->getEnemyNum() < 5) {
-			waveClock->restart();
-			testWave->activateNextEnemy();
-		}
 
 		if (frameNum > 60) frameNum = 0;
 

@@ -4,11 +4,13 @@
 Bullet::Bullet(string sprite, sf::Vector2f position, sf::Vector2f target) {
 	Texture.loadFromFile(sprite);
 	Sprite.setTexture(Texture);
+	Sprite.setScale(0.15, 0.15);
 	Sprite.setOrigin(Sprite.getLocalBounds().width / 2, Sprite.getLocalBounds().height / 2);
 	Sprite.setPosition(position);
 	Target = target;
-	DeltaX = (target.x - position.x) / 1000;
-	DeltaY = (target.y - position.y) / 1000;
+	DeltaX = round(((target.x - position.x) / Speed) * 100.0) / 100.0;
+	DeltaY = round(((target.y - position.y) / Speed) * 100.0) / 100.0;
+	cout << "\n DeltaX: " << DeltaX << " & DeltaY: " << DeltaY;
 }
 void Bullet::updatePosition() {
 	Sprite.setPosition(Sprite.getPosition().x + DeltaX, Sprite.getPosition().y + DeltaY);

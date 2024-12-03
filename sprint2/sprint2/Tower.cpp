@@ -6,6 +6,7 @@
 Tower::Tower(string sprite, sf::Vector2f position) {
 	Texture.loadFromFile(sprite);
 	Sprite.setTexture(Texture);
+	Sprite.setScale(0.6, 0.6);
 	Sprite.setOrigin(Sprite.getLocalBounds().width / 2, Sprite.getLocalBounds().height / 2);
 	Sprite.setPosition(position);
 	Clock.restart();

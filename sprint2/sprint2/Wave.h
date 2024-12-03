@@ -4,13 +4,15 @@
 
 class Wave {
 	private:
-		Enemy Enemies[5];
-		const int Size = 5;
-		float WaveSpeed = 0.1;
+		vector <Enemy*> Enemies;
+		int Size = 5;
+		int RemainingUnits = Size;
+		float WaveSpeed = 1; // smaller is faster
 		int EnemyNum = 0;
+
 	public:
-		Wave(){}
-		Wave(Enemy enemy);
+		Wave();
+		Wave(int waveSize, string texture, sf::Vector2f startPos);
 		void updateActiveEnemyPositions(Path path);
 		int getSize();
 		Enemy getEnemy(int enemy);
@@ -18,6 +20,9 @@ class Wave {
 		int getEnemyNum();
 		void checkEnemyActivity(int enemy);
 		void setEnemyHP(int enemy, float damage);
+		int getRemainingUnits();
+		void updateRemainingUnits();
+		void resetWave();
 		~Wave(){}
 };
 

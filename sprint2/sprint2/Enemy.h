@@ -4,8 +4,9 @@ class Enemy {
 	private:
 		sf::Texture Texture;
 		sf::Sprite Sprite;
+		const float BaselineHP = 5.f;
 		float HP = 5.f;
-		float Speed = 60;
+		float Speed = 1;
 		int PathPosition = 0;
 		bool IsActive = false;
 		bool IsAlive = true;
@@ -22,8 +23,11 @@ class Enemy {
 		void updateY();
 		bool getIsActive();
 		void setIsActive(bool isActive);
+		float getHP();
 		void setHP(float damage);
 		void hpCheckForActivity();
+		bool isDestroyed();
+		void healHP();
 		~Enemy(){}
 };
 
