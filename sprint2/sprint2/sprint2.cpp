@@ -7,7 +7,32 @@
 #include "Bullet.h"
 #include "Tower.h"
 
+//class MyClass { 
+//	public: 
+//		int intValue; 
+//		double doubleValue; 
+//		char* charArray; 
+//		
+//		MyClass(int intVal, double doubleVal, size_t arraySize) : intValue(intVal), doubleValue(doubleVal) { charArray = new char[arraySize]; } 
+//		~MyClass() { delete[] charArray; } 
+//
+//		void printMemoryUsage() const { 
+//			size_t charArr = sizeof(*charArray);
+//			size_t charSing = sizeof(char);
+//			cout << "charArr: " << charArr << " charSing: " << charSing;
+//			size_t dynamicMemory = sizeof(*charArray) * (sizeof(charArray) / sizeof(char)); 
+//			cout << "\n Memory used by MyClass " << sizeof(*this);
+//			cout << "\n Memory used by dynamicMemory " << dynamicMemory;
+//		}
+//};
+
+
 void main() {
+
+		//size_t arraySize = 50; 
+		//MyClass obj(42, 3.14, arraySize); 
+		//obj.printMemoryUsage();
+
 //SEED RNG
 	srand(time(0));
 
@@ -72,7 +97,10 @@ Path testPath(100, 100, pointsMap, chess.getPosition());
 
 //Enemy* testEnemy = new Enemy("bug.png", testPath.getStart());
 
-Wave* testWave = new Wave(5, "bug.png", testPath.getStart());
+Wave* testWave = new Wave(3, 100.f, "bug.png", testPath.getStart());
+
+Wave* Waves[10];
+Waves[0] = testWave;
 
 bool canBuild = false;
 vector <Tower*> towers;
@@ -102,15 +130,15 @@ background.setPosition(centerOfScreen);
 		}
 
 		window.display();
+
 		window.clear();
 
 		window.draw(background);
+
 		window.draw(chess);
 
-		testWave->updateRemainingUnits();
-
 		//WAVE CLOCK
-		if (waveClock->getElapsedTime().asSeconds() > 1 && testWave->getEnemyNum() < 5) {
+		if (waveClock->getElapsedTime().asSeconds() > 1 && testWave->getEnemyNum() < testWave->getSize()) {
 
 			waveClock->restart();
 
@@ -118,9 +146,13 @@ background.setPosition(centerOfScreen);
 		}
 
 		if (testWave->getRemainingUnits() == 0) {
-			testWave->resetWave();
-			//need to create a new wave
-			//need to reset enemy PathPosition
+			//delete testWave;
+			//think through what has to happen when resetting a wave.
+			//can it be reset?
+			//should it be destroyed and create a whole new one?
+			//an array of waves that get activated once one is destroyed?
+
+			testWave->resetWave(5, 5.f, "bug.png", testPath.getStart());
 		}
 
 		//LOOP THROUGH WAVE
@@ -206,21 +238,23 @@ background.setPosition(centerOfScreen);
 			}
 		}
 
-
-
 		if (frameNum > 60) frameNum = 0;
 
-		//cout << testPath.getMapSize() << "\n";
-
 		if (frameClock->getElapsedTime().asMilliseconds() > 16.66) {
+
 			frameClock->restart();
+
+			testWave->updateRemainingUnits();
+
+			testWave->updateEnemyActivity(testPath);
+
 			testWave->updateActiveEnemyPositions(testPath);
 		}
 
 		while (window.pollEvent(event))	{
-			if (event.type == sf::Event::Closed) {
+
+			if (event.type == sf::Event::Closed) 
 				window.close();
-			}
 		}
 	}
 }

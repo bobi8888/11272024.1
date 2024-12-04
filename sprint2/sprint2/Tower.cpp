@@ -11,7 +11,6 @@ Tower::Tower(string sprite, sf::Vector2f position) {
 	Sprite.setPosition(position);
 	Clock.restart();
 }
-
 sf::Sprite Tower::getSprite() {
 	return Sprite;
 }
@@ -22,6 +21,7 @@ void Tower::setCanFire(bool canFire) {
 	CanFire = canFire;
 }
 void Tower::updateCanFire() {
+
 	if (Clock.getElapsedTime().asMilliseconds() > FireRate) {
 		Clock.restart();
 		setCanFire(true);
@@ -33,7 +33,6 @@ void Tower::updateCanFire() {
 sf::Vector2f Tower::getPosition() {
 	return Sprite.getPosition();
 }
-
 float Tower::getRange() {
 	return Range;
 }

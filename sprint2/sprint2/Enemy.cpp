@@ -7,8 +7,18 @@ Enemy::Enemy(string sprite, sf::Vector2f position) {
 	Sprite.setOrigin(Sprite.getLocalBounds().width / 2, Sprite.getLocalBounds().height / 2);
 	Sprite.setPosition(position);
 }
+Enemy::Enemy(string sprite, sf::Vector2f position, float speed) {
+	Texture.loadFromFile(sprite);
+	Sprite.setTexture(Texture);
+	Sprite.setOrigin(Sprite.getLocalBounds().width / 2, Sprite.getLocalBounds().height / 2);
+	Sprite.setPosition(position);
+	Speed = speed;
+}
 sf::Sprite Enemy::getSprite() {
 	return Sprite;
+}
+void Enemy::setPosition(sf::Vector2f position) {
+	Sprite.setPosition(position);
 }
 int Enemy::getPathIndex() {
 	return PathIndex;
@@ -34,20 +44,16 @@ bool Enemy::getIsActive() {
 void Enemy::setIsActive(bool isActive) {
 	IsActive = isActive;
 }
-
 float Enemy::getHP() {
 	return HP;
 }
-
 void Enemy::setHP(float damage) {
 	HP = HP - damage;
 }
-
 void Enemy::hpCheckForActivity() {
 	if (HP <= 0)
 		IsActive = false;
 }
-
 bool Enemy::isDestroyed() {
 	if (HP <= 0 && IsActive) {
 		IsActive = false;
@@ -55,7 +61,6 @@ bool Enemy::isDestroyed() {
 	}
 	return false;
 }
-
 void Enemy::healHP() {
 	HP = BaselineHP;
 }
