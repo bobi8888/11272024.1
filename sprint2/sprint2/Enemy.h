@@ -6,8 +6,8 @@ class Enemy {
 		sf::Sprite Sprite;
 		const float BaselineHP = 5.f;
 		float HP = 5.f;
-		float Speed = 1;
-		int PathPosition = 0;
+		float Speed = 10;
+		int PathIndex = 0;
 		bool IsActive = false;
 		bool IsAlive = true;
 
@@ -15,8 +15,8 @@ class Enemy {
 		Enemy(){}
 		Enemy(string sprite, sf::Vector2f position);
 		sf::Sprite getSprite();
-		int getPathPositon();
-		void incrementPathPosition();
+		int getPathIndex();
+		void incrementPathIndex();
 		void updateX();
 		float getX();
 		float getY();

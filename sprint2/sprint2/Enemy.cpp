@@ -10,11 +10,11 @@ Enemy::Enemy(string sprite, sf::Vector2f position) {
 sf::Sprite Enemy::getSprite() {
 	return Sprite;
 }
-int Enemy::getPathPositon() {
-	return PathPosition;
+int Enemy::getPathIndex() {
+	return PathIndex;
 }
-void Enemy::incrementPathPosition() {
-	PathPosition++;
+void Enemy::incrementPathIndex() {
+	PathIndex++;
 }
 float Enemy::getX() {
 	return Sprite.getPosition().x;

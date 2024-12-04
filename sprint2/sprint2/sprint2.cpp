@@ -8,6 +8,9 @@
 #include "Tower.h"
 
 void main() {
+//SEED RNG
+	srand(time(0));
+
 //WINDOW
 	int screenWidth = GetSystemMetrics(SM_CXSCREEN) - 100;
 	int screenHeight = GetSystemMetrics(SM_CYSCREEN) - 100;
@@ -54,16 +57,16 @@ chess.setTexture(chessTexture);
 chess.setOrigin(chess.getLocalBounds().width / 2, chess.getLocalBounds().height / 2);
 chess.setPosition(sf::Vector2f(windowXY - 25, windowXY / 2));
 
-Point point1('x', 200.f);
-Point point2('y', 500.f);
-Point point3('x', 300.f);
-Point point4('y', 550.f);
+Point* point1 = new Point('x', 200.f);
+Point* point2 = new Point('y', 500.f);
+Point* point3 = new Point('x', 300.f);
+Point* point4 = new Point('y', 550.f);
 
-map <int, Point> pointsMap;
-pointsMap[0] = point1;
-pointsMap[1] = point2;
-pointsMap[2] = point3;
-pointsMap[3] = point4;
+vector <Point*> pointsMap;
+pointsMap.push_back(point1);
+pointsMap.push_back(point2);
+pointsMap.push_back(point3);
+pointsMap.push_back(point4);
 
 Path testPath(100, 100, pointsMap, chess.getPosition());
 
@@ -116,6 +119,8 @@ background.setPosition(centerOfScreen);
 
 		if (testWave->getRemainingUnits() == 0) {
 			testWave->resetWave();
+			//need to create a new wave
+			//need to reset enemy PathPosition
 		}
 
 		//LOOP THROUGH WAVE
@@ -204,6 +209,8 @@ background.setPosition(centerOfScreen);
 
 
 		if (frameNum > 60) frameNum = 0;
+
+		//cout << testPath.getMapSize() << "\n";
 
 		if (frameClock->getElapsedTime().asMilliseconds() > 16.66) {
 			frameClock->restart();

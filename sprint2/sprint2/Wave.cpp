@@ -12,26 +12,38 @@ Wave::Wave(int waveSize, string texture, sf::Vector2f startPos) {
 		Enemies.push_back(enemy);
 	}
 }
-
+//refactor this keep it DRY
 void Wave::updateActiveEnemyPositions(Path path) {
 
+
 	for (int i = 0; i < 5; i++) {
-		if (Enemies[i]->getIsActive()) {
-			char dir = path.getPoint(Enemies[i]->getPathPositon()).Dir;
+
+		if (Enemies.at(i)->getIsActive()) {
+			char dir = path.getPoint(Enemies.at(i)->getPathIndex())->Dir;
 
 			if (dir == 'x') {
 
-				if (path.getPoint(Enemies[i]->getPathPositon()).Dist > Enemies[i]->getX()) {
-						Enemies[i]->updateX();
+				if (path.getPoint(Enemies.at(i)->getPathIndex())->Dist > Enemies.at(i)->getX()) {
+						Enemies.at(i)->updateX();
 				} else {
-						Enemies[i]->incrementPathPosition();
+
+						Enemies.at(i)->incrementPathIndex();
+
+						if (path.getMapSize() == Enemies.at(i)->getPathIndex()) {
+							Enemies.at(i)->setIsActive(false);
+						}
 				}
 			} else {
 
-				if (path.getPoint(Enemies[i]->getPathPositon()).Dist > Enemies[i]->getY()) {
-					Enemies[i]->updateY();
+				if (path.getPoint(Enemies.at(i)->getPathIndex())->Dist > Enemies.at(i)->getY()) {
+					Enemies.at(i)->updateY();
 				} else {
-					Enemies[i]->incrementPathPosition();
+
+					Enemies.at(i)->incrementPathIndex();
+
+					if (path.getMapSize() == Enemies.at(i)->getPathIndex()) {
+						Enemies.at(i)->setIsActive(false);
+					}
 				}
 			}
 		}
@@ -45,8 +57,8 @@ Enemy Wave::getEnemy(int enemy) {
 	return *Enemies[enemy];
 }
 void Wave::activateNextEnemy() {
-	Enemies[EnemyNum]->setIsActive(true);
-	EnemyNum++;
+	Enemies[EnemyNum++]->setIsActive(true);
+	//EnemyNum++;
 }
 int Wave::getEnemyNum() {
 	return EnemyNum;
@@ -64,18 +76,20 @@ void Wave::updateRemainingUnits() {
 
 	for (int i = 0; i < Size; i++) {
 
-		if (Enemies[i]->isDestroyed()) {
+		if (Enemies.at(i)->isDestroyed()) {
 			RemainingUnits--;
 		}
 	}
 }
 void Wave::resetWave() {
 	if (RemainingUnits <= 0) {
+
 		RemainingUnits = Size;
 		EnemyNum = 0;
+		cout << "destroy Wave";
 
 		for (int i = 0; i < Size; i++) {
-			Enemies[i]->healHP();
+			Enemies.at(i)->healHP();
 		}
 	}
 }
