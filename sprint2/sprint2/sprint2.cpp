@@ -26,7 +26,6 @@
 //		}
 //};
 
-
 void main() {
 
 		//size_t arraySize = 50; 
@@ -64,7 +63,6 @@ frameClock->restart();
 
 int frameNum = 0;
 
-
 sf::Clock* waveClock = new sf::Clock;
 waveClock->restart();
 
@@ -73,8 +71,6 @@ buildClock->restart();
 
 //GAME LOOP
 
-//int i = 0;
-
 sf::Texture chessTexture;
 chessTexture.loadFromFile("chessPiece.png");
 sf::Sprite chess;
@@ -82,22 +78,25 @@ chess.setTexture(chessTexture);
 chess.setOrigin(chess.getLocalBounds().width / 2, chess.getLocalBounds().height / 2);
 chess.setPosition(sf::Vector2f(windowXY - 25, windowXY / 2));
 
-Point* point1 = new Point('x', 200.f);
-Point* point2 = new Point('y', 500.f);
-Point* point3 = new Point('x', 300.f);
-Point* point4 = new Point('y', 550.f);
+//float values are the global coord, not distance traveled
+//Point* point1 = new Point('x', 200.f);
+//Point* point2 = new Point('y', 500.f);
+//Point* point3 = new Point('x', 300.f);
+//Point* point4 = new Point('y', 550.f);
+//
+//vector <Point*> pointsMap;
+//pointsMap.push_back(point1);
+//pointsMap.push_back(point2);
+//pointsMap.push_back(point3);
+//pointsMap.push_back(point4);
+//
+//Path testPath(100, 100, pointsMap, chess.getPosition());
 
-vector <Point*> pointsMap;
-pointsMap.push_back(point1);
-pointsMap.push_back(point2);
-pointsMap.push_back(point3);
-pointsMap.push_back(point4);
-
-Path testPath(100, 100, pointsMap, chess.getPosition());
+Path randomPath(windowXY, chess.getPosition());
 
 //Enemy* testEnemy = new Enemy("bug.png", testPath.getStart());
 
-Wave* testWave = new Wave(3, 100.f, "bug.png", testPath.getStart());
+Wave* testWave = new Wave(3, 1.f, "bug.png", randomPath.getStart());
 
 Wave* Waves[10];
 Waves[0] = testWave;
@@ -113,8 +112,6 @@ background.setTexture(bgTexture);
 background.setOrigin(background.getLocalBounds().width / 2, background.getLocalBounds().height / 2);
 background.setPosition(centerOfScreen);
 
-
-
 //TODO:
 //update to next wave when wave is dead
 //generate next path the next wave will take
@@ -126,7 +123,10 @@ background.setPosition(centerOfScreen);
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
 			//cout << "\nx is :" << myMouse->getPosition(window).x << " y is :" << myMouse->getPosition(window).y;
 			//cout << waveClock->getElapsedTime().asMilliseconds() << "\n";
-			testPath.rerollPath(windowXY, 6);
+			//cout << "\n Enemies sprite x: " << testWave->getEnemy(0).getSprite().getPosition().x;
+			//cout << "\n Enemies sprite y: " << testWave->getEnemy(0).getSprite().getPosition().y;
+			//cout << "\n Enemies x: " << testWave->getEnemy(0).getX();
+			//cout << "\n Enemies y: " << testWave->getEnemy(0).getY();
 		}
 
 		window.display();
@@ -145,14 +145,14 @@ background.setPosition(centerOfScreen);
 			testWave->activateNextEnemy();
 		}
 
+		//WAVE DESTROYED
 		if (testWave->getRemainingUnits() == 0) {
-			//delete testWave;
-			//think through what has to happen when resetting a wave.
-			//can it be reset?
-			//should it be destroyed and create a whole new one?
-			//an array of waves that get activated once one is destroyed?
+			//create a struct of new wave params? increment an array of them?
+			//testWave->resetWave(Waves[testWave->getWaveNum()]);
+			//testWave->incrementWaves();
 
-			testWave->resetWave(5, 5.f, "bug.png", testPath.getStart());
+			testWave->resetWave(5, 2.f, "bug.png", randomPath.getStart());
+			randomPath.generateNewPath();
 		}
 
 		//LOOP THROUGH WAVE
@@ -238,17 +238,19 @@ background.setPosition(centerOfScreen);
 			}
 		}
 
+		//FRAMES
 		if (frameNum > 60) frameNum = 0;
 
+		//Frame rate is affecting speed of sprites
 		if (frameClock->getElapsedTime().asMilliseconds() > 16.66) {
 
 			frameClock->restart();
 
 			testWave->updateRemainingUnits();
 
-			testWave->updateEnemyActivity(testPath);
+			testWave->updateEnemyActivity(randomPath);
 
-			testWave->updateActiveEnemyPositions(testPath);
+			testWave->updateActiveEnemyPositions(randomPath);
 		}
 
 		while (window.pollEvent(event))	{

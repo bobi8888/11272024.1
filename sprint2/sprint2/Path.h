@@ -3,22 +3,25 @@
 
 class Path {
 	private:
-		//change this from a map to a vector?
-		//allocate memory for an array?
 		vector <Point*> PointsMap;
-		//map <int, Point*> PointsMap;
 		sf::Vector2f Start;
 		sf::Vector2f Goal;
+		int WindowXY = 0;
+		int TurnQty = 0;
+		int XSegments = 0, YSegments = 0;
 
 	public:
 		Path() {}
-		Path(float x, float y, vector <Point*> point, sf::Vector2f goal);
-		void rerollPath(int windowY, int numTurns);
+		//Path(float x, float y, vector <Point*> point, sf::Vector2f goal);
+		Path(int windowXY, sf::Vector2f goal);
+
+		void randomizeStart();
+		void setTurnsAndSegments();
+		void generateNewPath();
 		sf::Vector2f getStart();
 		Point* getPoint(int point);
 		int getMapSize();
 		vector <Point*> getMap();
-		//map <int, Point> getPointsMap();
 		~Path() {}
 };
 
