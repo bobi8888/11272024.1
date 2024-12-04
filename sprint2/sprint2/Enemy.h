@@ -11,16 +11,24 @@ class Enemy {
 		bool IsActive = false;
 		bool IsAlive = true;
 
+		float PrevX = 0.f, PrevY = 0.f;
+		bool IsAboveMid;
+
 	public:
 		Enemy(){}
 		Enemy(string sprite, sf::Vector2f position);
-		Enemy(string sprite, sf::Vector2f position, float speed);
+		Enemy(string sprite, sf::Vector2f position, float speed, float midY);
 
 		sf::Sprite getSprite();
 		void setPosition(sf::Vector2f position);
 
 		int getPathIndex();
 		void incrementPathIndex();
+
+		float getPrevX();
+		void setPrevX();
+		float getPrevY();
+		void setPrevY();
 
 		float getX();
 		float getY();

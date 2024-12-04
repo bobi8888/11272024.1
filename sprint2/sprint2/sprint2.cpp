@@ -96,7 +96,7 @@ Path randomPath(windowXY, chess.getPosition());
 
 //Enemy* testEnemy = new Enemy("bug.png", testPath.getStart());
 
-Wave* testWave = new Wave(3, 1.f, "bug.png", randomPath.getStart());
+Wave* testWave = new Wave(3, 22.f, "bug.png", randomPath.getStart(), randomPath.getGoal().y);
 
 Wave* Waves[10];
 Waves[0] = testWave;
@@ -151,7 +151,7 @@ background.setPosition(centerOfScreen);
 			//testWave->resetWave(Waves[testWave->getWaveNum()]);
 			//testWave->incrementWaves();
 
-			testWave->resetWave(5, 2.f, "bug.png", randomPath.getStart());
+			testWave->resetWave(5, 22.f, "bug.png", randomPath.getStart(), randomPath.getGoal().y);
 			randomPath.generateNewPath();
 		}
 

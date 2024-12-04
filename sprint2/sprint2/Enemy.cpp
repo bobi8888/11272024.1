@@ -7,12 +7,19 @@ Enemy::Enemy(string sprite, sf::Vector2f position) {
 	Sprite.setOrigin(Sprite.getLocalBounds().width / 2, Sprite.getLocalBounds().height / 2);
 	Sprite.setPosition(position);
 }
-Enemy::Enemy(string sprite, sf::Vector2f position, float speed) {
+Enemy::Enemy(string sprite, sf::Vector2f position, float speed, float midY) {
 	Texture.loadFromFile(sprite);
 	Sprite.setTexture(Texture);
 	Sprite.setOrigin(Sprite.getLocalBounds().width / 2, Sprite.getLocalBounds().height / 2);
 	Sprite.setPosition(position);
 	Speed = speed;
+	if (position.y > midY) {
+		IsAboveMid = true;
+	}
+	else {
+		IsAboveMid = false;
+	}
+	cout << IsAboveMid << "\n";
 }
 sf::Sprite Enemy::getSprite() {
 	return Sprite;
@@ -25,6 +32,18 @@ int Enemy::getPathIndex() {
 }
 void Enemy::incrementPathIndex() {
 	PathIndex++;
+}
+float Enemy::getPrevX() {
+	return PrevX;
+}
+void Enemy::setPrevX() {
+	PrevX = Sprite.getPosition().x;
+}
+float Enemy::getPrevY() {
+	return PrevY;
+}
+void Enemy::setPrevY() {
+	PrevY = Sprite.getPosition().y;
 }
 float Enemy::getX() {
 	return Sprite.getPosition().x;

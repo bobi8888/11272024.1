@@ -88,6 +88,9 @@ void Path::generateNewPath() {
 sf::Vector2f Path::getStart() {
 	return Start;
 }
+sf::Vector2f Path::getGoal() {
+	return Goal;
+}
 Point* Path::getPoint(int point) {
 	return PointsMap.at(point);
 }

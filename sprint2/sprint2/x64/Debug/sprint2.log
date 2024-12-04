@@ -1,13 +1,2 @@
-﻿  Path.cpp
-C:\Users\1stBuild\Desktop\1127test\take2\GitRemoteCon\sprint2\sprint2\Path.cpp(19,26): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-C:\Users\1stBuild\Desktop\1127test\take2\GitRemoteCon\sprint2\sprint2\Path.cpp(19,26): warning C4244:         with
-C:\Users\1stBuild\Desktop\1127test\take2\GitRemoteCon\sprint2\sprint2\Path.cpp(19,26): warning C4244:         [
-C:\Users\1stBuild\Desktop\1127test\take2\GitRemoteCon\sprint2\sprint2\Path.cpp(19,26): warning C4244:             T=float
-C:\Users\1stBuild\Desktop\1127test\take2\GitRemoteCon\sprint2\sprint2\Path.cpp(19,26): warning C4244:         ]
-C:\Users\1stBuild\Desktop\1127test\take2\GitRemoteCon\sprint2\sprint2\Path.cpp(30,26): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-C:\Users\1stBuild\Desktop\1127test\take2\GitRemoteCon\sprint2\sprint2\Path.cpp(30,26): warning C4244:         with
-C:\Users\1stBuild\Desktop\1127test\take2\GitRemoteCon\sprint2\sprint2\Path.cpp(30,26): warning C4244:         [
-C:\Users\1stBuild\Desktop\1127test\take2\GitRemoteCon\sprint2\sprint2\Path.cpp(30,26): warning C4244:             T=float
-C:\Users\1stBuild\Desktop\1127test\take2\GitRemoteCon\sprint2\sprint2\Path.cpp(30,26): warning C4244:         ]
-C:\Users\1stBuild\Desktop\1127test\take2\GitRemoteCon\sprint2\sprint2\Path.cpp(95,23): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+﻿  Enemy.cpp
   sprint2.vcxproj -> C:\Users\1stBuild\Desktop\1127test\take2\GitRemoteCon\sprint2\x64\Debug\sprint2.exe

@@ -19,6 +19,7 @@ class Path {
 		void setTurnsAndSegments();
 		void generateNewPath();
 		sf::Vector2f getStart();
+		sf::Vector2f getGoal();
 		Point* getPoint(int point);
 		int getMapSize();
 		vector <Point*> getMap();

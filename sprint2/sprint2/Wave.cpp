@@ -3,14 +3,14 @@
 
 Wave::Wave() {}
 
-Wave::Wave(int size, float speed, string texture, sf::Vector2f startPos) {
+Wave::Wave(int size, float speed, string texture, sf::Vector2f startPos, float midY) {
 
 	Size = size;
 	RemainingUnits = size;
 
 	for (int i = 0; i < size; i++) {
 
-		Enemy* enemy = new Enemy(texture, startPos, speed);
+		Enemy* enemy = new Enemy(texture, startPos, speed, midY);
 
 		Enemies.push_back(enemy);
 	}
@@ -23,17 +23,47 @@ void Wave::updateActiveEnemyPositions(Path path) {
 
 			if (path.getPoint(Enemies.at(i)->getPathIndex())->Dir == 'x') {
 
-				if (path.getPoint(Enemies.at(i)->getPathIndex())->Dist > Enemies.at(i)->getX()) 
+				//previous x + path->dist > getX()
+				//if (path.getPoint(Enemies.at(i)->getPathIndex())->Dist > Enemies.at(i)->getX()) {
+				if (Enemies.at(i)->getPrevX() + path.getPoint(Enemies.at(i)->getPathIndex())->Dist > Enemies.at(i)->getX()) {
+				
+					//if above or below target, pass isAbove bool to updateX()?
+					//Enemies.at(i)->updateX();
 					Enemies.at(i)->updateX();
-				else 
+
+				}
+				else {
 					Enemies.at(i)->incrementPathIndex();
+					//save the previous y position?
+					Enemies.at(i)->setPrevY();
+					//cout << Enemies.at(i)->getPrevY() << "\n";
+				}
 			
 			} else {
+				//i believe here is the area that needs to check if the sprite is above or below the target
 
-				if (path.getPoint(Enemies.at(i)->getPathIndex())->Dist > Enemies.at(i)->getY()) 
-					Enemies.at(i)->updateY();				
-				else
+				//if (isAboveGoal) {
+
+					if (Enemies.at(i)->getPrevY() + path.getPoint(Enemies.at(i)->getPathIndex())->Dist > Enemies.at(i)->getY()) {
+						Enemies.at(i)->updateY();
+					}
+
+				//}
+				//else {
+
+				//}
+
+				if (Enemies.at(i)->getPrevY() + path.getPoint(Enemies.at(i)->getPathIndex())->Dist > Enemies.at(i)->getY()) {
+
+					Enemies.at(i)->updateY();	
+					
+					//save previous x position?
+				}
+				else {
 					Enemies.at(i)->incrementPathIndex();
+					Enemies.at(i)->setPrevX();
+					//cout << Enemies.at(i)->getPrevX() << "\n";
+				}
 			}
 		}
 	}
@@ -80,7 +110,7 @@ void Wave::updateRemainingUnits() {
 			RemainingUnits--;		
 	}
 }
-void Wave::resetWave(int size, float speed, string texture, sf::Vector2f startPos) {
+void Wave::resetWave(int size, float speed, string texture, sf::Vector2f startPos, float midY) {
 
 	if (RemainingUnits <= 0) {
 
@@ -95,7 +125,7 @@ void Wave::resetWave(int size, float speed, string texture, sf::Vector2f startPo
 
 		for (int i = 0; i < size; i++) {
 
-			Enemy* enemy = new Enemy(texture, startPos, speed);
+			Enemy* enemy = new Enemy(texture, startPos, speed, midY);
 
 			Enemies.push_back(enemy);
 		}
