@@ -1,4 +1,5 @@
 #pragma once
+#include "utils.h"
 #include "Path.h"
 #include "Enemy.h"
 
@@ -12,7 +13,7 @@ class Wave {
 
 	public:
 		Wave();
-		Wave(int size, float speed, string texture, sf::Vector2f startPos, float midY);
+		Wave(int size, float speed, string texture, sf::Vector2f startPos, float targetY);
 		void updateActiveEnemyPositions(Path path);
 		void updateEnemyActivity(Path path);
 		int getSize();
@@ -23,7 +24,7 @@ class Wave {
 		void setEnemyHP(int enemy, float damage);
 		int getRemainingUnits();
 		void updateRemainingUnits();
-		void resetWave(int size, float speed, string texture, sf::Vector2f startPos, float midY);
+		void resetWave(int size, float speed, string texture, sf::Vector2f startPos, float targetY);
 		~Wave(){}
 };
 

@@ -22,7 +22,5 @@ class Path {
 		sf::Vector2f getGoal();
 		Point* getPoint(int point);
 		int getMapSize();
-		vector <Point*> getMap();
 		~Path() {}
 };
-

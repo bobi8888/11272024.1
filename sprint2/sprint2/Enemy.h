@@ -1,4 +1,5 @@
 #pragma once
+#include "utils.h"
 
 class Enemy {
 	private:
@@ -17,7 +18,7 @@ class Enemy {
 	public:
 		Enemy(){}
 		Enemy(string sprite, sf::Vector2f position);
-		Enemy(string sprite, sf::Vector2f position, float speed, float midY);
+		Enemy(string sprite, sf::Vector2f position, float speed, float targetY);
 
 		sf::Sprite getSprite();
 		void setPosition(sf::Vector2f position);

@@ -97,9 +97,4 @@ Point* Path::getPoint(int point) {
 int Path::getMapSize() {
 	return PointsMap.size();
 }
-vector <Point*> Path::getMap() {
-	return PointsMap;
-}
-//map<int, Point> Path::getPointsMap() {
-//	return PointsMap;
-//}
+

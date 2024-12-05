@@ -18,3 +18,5 @@ using std::round;
 using std::time;
 using std::srand;
 //using std::for_each;
+
+//float g_screenCenterY = 400.f;

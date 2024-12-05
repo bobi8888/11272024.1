@@ -1,16 +1,15 @@
-#include "utils.h"
 #include "Wave.h"
 
 Wave::Wave() {}
 
-Wave::Wave(int size, float speed, string texture, sf::Vector2f startPos, float midY) {
+Wave::Wave(int size, float speed, string texture, sf::Vector2f startPos, float targetY) {
 
 	Size = size;
 	RemainingUnits = size;
 
 	for (int i = 0; i < size; i++) {
 
-		Enemy* enemy = new Enemy(texture, startPos, speed, midY);
+		Enemy* enemy = new Enemy(texture, startPos, speed, targetY);
 
 		Enemies.push_back(enemy);
 	}
@@ -110,7 +109,7 @@ void Wave::updateRemainingUnits() {
 			RemainingUnits--;		
 	}
 }
-void Wave::resetWave(int size, float speed, string texture, sf::Vector2f startPos, float midY) {
+void Wave::resetWave(int size, float speed, string texture, sf::Vector2f startPos, float targetY) {
 
 	if (RemainingUnits <= 0) {
 
@@ -125,7 +124,7 @@ void Wave::resetWave(int size, float speed, string texture, sf::Vector2f startPo
 
 		for (int i = 0; i < size; i++) {
 
-			Enemy* enemy = new Enemy(texture, startPos, speed, midY);
+			Enemy* enemy = new Enemy(texture, startPos, speed, targetY);
 
 			Enemies.push_back(enemy);
 		}

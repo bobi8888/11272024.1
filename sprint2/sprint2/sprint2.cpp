@@ -28,7 +28,7 @@
 
 void main() {
 
-		//size_t arraySize = 50; 
+//size_t arraySize = 50; 
 		//MyClass obj(42, 3.14, arraySize); 
 		//obj.printMemoryUsage();
 
@@ -78,25 +78,10 @@ chess.setTexture(chessTexture);
 chess.setOrigin(chess.getLocalBounds().width / 2, chess.getLocalBounds().height / 2);
 chess.setPosition(sf::Vector2f(windowXY - 25, windowXY / 2));
 
-//float values are the global coord, not distance traveled
-//Point* point1 = new Point('x', 200.f);
-//Point* point2 = new Point('y', 500.f);
-//Point* point3 = new Point('x', 300.f);
-//Point* point4 = new Point('y', 550.f);
-//
-//vector <Point*> pointsMap;
-//pointsMap.push_back(point1);
-//pointsMap.push_back(point2);
-//pointsMap.push_back(point3);
-//pointsMap.push_back(point4);
-//
-//Path testPath(100, 100, pointsMap, chess.getPosition());
-
 Path randomPath(windowXY, chess.getPosition());
 
-//Enemy* testEnemy = new Enemy("bug.png", testPath.getStart());
-
-Wave* testWave = new Wave(3, 22.f, "bug.png", randomPath.getStart(), randomPath.getGoal().y);
+//Wave* testWave = new Wave(3, 22.f, "bug.png", randomPath.getStart(), randomPath.getGoal().y);
+Wave* testWave = new Wave(3, 22.f, "bug.png", randomPath.getStart(), chess.getPosition().y);
 
 Wave* Waves[10];
 Waves[0] = testWave;
@@ -113,8 +98,6 @@ background.setOrigin(background.getLocalBounds().width / 2, background.getLocalB
 background.setPosition(centerOfScreen);
 
 //TODO:
-//update to next wave when wave is dead
-//generate next path the next wave will take
 //implement currency for destroying enemeies to buy towers
 
 	while (window.isOpen())	{
@@ -151,7 +134,7 @@ background.setPosition(centerOfScreen);
 			//testWave->resetWave(Waves[testWave->getWaveNum()]);
 			//testWave->incrementWaves();
 
-			testWave->resetWave(5, 22.f, "bug.png", randomPath.getStart(), randomPath.getGoal().y);
+			testWave->resetWave(5, 22.f, "bug.png", randomPath.getStart(), chess.getPosition().y);
 			randomPath.generateNewPath();
 		}
 
