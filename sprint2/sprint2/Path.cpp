@@ -24,27 +24,23 @@ Path::Path(int windowXY, sf::Vector2f goal) {
 }
 void Path::randomizeStart() {
 
-	int floor = 50;
+	int floor = 60;
 	int newStartingY(floor + (rand() % (WindowXY - floor)));
 
 	Start = sf::Vector2f(0, newStartingY);
+	cout << "new starting Y: " << newStartingY << "\n";
 }
 void Path::setTurnsAndSegments() {
 	
-	int floor = 1, range = 4;
+	int floor = 2, range = 4;
 
 	TurnQty = (floor + (rand() % range));
 
-	if (TurnQty % 2 == 0) {
+	if (TurnQty % 2 != 0) TurnQty++;
 
-		YSegments = (TurnQty + 1) / 2;
-		XSegments = YSegments + 1;
+	YSegments = (TurnQty + 1) / 2;
 
-	} else {
-
-		XSegments = (TurnQty + 1) / 2;
-		YSegments = XSegments;
-	}
+	XSegments = YSegments + 1;
 }
 void Path::generateNewPath() {
 
@@ -57,32 +53,47 @@ void Path::generateNewPath() {
 	int mapIndex = 0;
 	int floor = 1;
 	int divisor = 0;
-	int xRange = 10, yRange = 10; 
+	int xRange = 9, yRange = 9; 
+
+	//int j = 0;
+	//while (j < 500) {
+	//	j++;
+	//	divisor = floor + (rand() % xRange);
+	//	cout << divisor << " : ";
+	//	if (divisor == 9) cout << "!!!";
+	//}
 
 	for (int i = 0; i < XSegments + YSegments; i++) {
 
-		if (mapIndex % 2 == 0) {
+		if (mapIndex++ % 2 == 0) {
 			
-			divisor = (floor + (rand() % xRange));
+			divisor =  floor + (rand() % xRange);
 
 			xRange = xRange - divisor + 1;
 
-			Point* xPoint = new Point('x', Goal.x * divisor / 10);
+			Point* xPoint = new Point('x', Goal.x * (float) divisor * 0.1);
 		
 			PointsMap.push_back(xPoint);
 
 		} else {
 
-			divisor = (floor + (rand() % yRange));
+			divisor = floor + (rand() % yRange);
 
 			yRange = yRange - divisor + 1;
 
-			Point* yPoint = new Point('y', Goal.y * divisor / 10);
+			float point;
+
+			//Point* yPoint = new Point('y', Start.y - (abs(Goal.y - Start.y) * divisor * 0.1));
+
+			if (Start.y > Goal.y) 
+				point = Start.y - (abs(Goal.y - Start.y) * divisor * 0.1);
+			else 
+				point = Start.y + (abs(Goal.y - Start.y) * divisor * 0.1);
+
+			Point* yPoint = new Point('y', point);
 
 			PointsMap.push_back(yPoint);
 		}
-
-		mapIndex++;
 	}
 }
 sf::Vector2f Path::getStart() {

@@ -1,7 +1,6 @@
 #include "Wave.h"
 
 Wave::Wave() {}
-
 Wave::Wave(int size, float speed, string texture, sf::Vector2f startPos, float targetY) {
 
 	Size = size;
@@ -22,46 +21,28 @@ void Wave::updateActiveEnemyPositions(Path path) {
 
 			if (path.getPoint(Enemies.at(i)->getPathIndex())->Dir == 'x') {
 
-				//previous x + path->dist > getX()
-				//if (path.getPoint(Enemies.at(i)->getPathIndex())->Dist > Enemies.at(i)->getX()) {
 				if (Enemies.at(i)->getPrevX() + path.getPoint(Enemies.at(i)->getPathIndex())->Dist > Enemies.at(i)->getX()) {
 				
-					//if above or below target, pass isAbove bool to updateX()?
-					//Enemies.at(i)->updateX();
 					Enemies.at(i)->updateX();
 
-				}
-				else {
+				} else {
+
 					Enemies.at(i)->incrementPathIndex();
-					//save the previous y position?
+
 					Enemies.at(i)->setPrevY();
-					//cout << Enemies.at(i)->getPrevY() << "\n";
 				}
 			
 			} else {
-				//i believe here is the area that needs to check if the sprite is above or below the target
-
-				//if (isAboveGoal) {
-
-					if (Enemies.at(i)->getPrevY() + path.getPoint(Enemies.at(i)->getPathIndex())->Dist > Enemies.at(i)->getY()) {
-						Enemies.at(i)->updateY();
-					}
-
-				//}
-				//else {
-
-				//}
 
 				if (Enemies.at(i)->getPrevY() + path.getPoint(Enemies.at(i)->getPathIndex())->Dist > Enemies.at(i)->getY()) {
 
 					Enemies.at(i)->updateY();	
 					
-					//save previous x position?
-				}
-				else {
+				} else {
+
 					Enemies.at(i)->incrementPathIndex();
+
 					Enemies.at(i)->setPrevX();
-					//cout << Enemies.at(i)->getPrevX() << "\n";
 				}
 			}
 		}
@@ -71,10 +52,18 @@ void Wave::updateEnemyActivity(Path path) {
 
 	for (int i = 0; i < Size; i++) {
 
-		if (path.getMapSize() == Enemies.at(i)->getPathIndex() && Enemies.at(i)->getIsActive()) {
+		bool destroy = false;
+
+		if (path.getMapSize() == Enemies.at(i)->getPathIndex() && Enemies.at(i)->getIsActive())
+			destroy = true;
+
+		if (Enemies.at(i)->getX() > 800 || Enemies.at(i)->getY() < 0 || Enemies.at(i)->getY() > 800) 	
+			destroy = true;
 		
+		if (destroy) {
+
 			Enemies.at(i)->setIsActive(false);
-		
+
 			RemainingUnits--;
 		}
 	}	

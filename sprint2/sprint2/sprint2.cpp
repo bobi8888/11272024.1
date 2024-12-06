@@ -81,7 +81,7 @@ chess.setPosition(sf::Vector2f(windowXY - 25, windowXY / 2));
 Path randomPath(windowXY, chess.getPosition());
 
 //Wave* testWave = new Wave(3, 22.f, "bug.png", randomPath.getStart(), randomPath.getGoal().y);
-Wave* testWave = new Wave(3, 22.f, "bug.png", randomPath.getStart(), chess.getPosition().y);
+Wave* testWave = new Wave(1, 22.f, "bug.png", randomPath.getStart(), chess.getPosition().y);
 
 Wave* Waves[10];
 Waves[0] = testWave;
@@ -134,12 +134,16 @@ background.setPosition(centerOfScreen);
 			//testWave->resetWave(Waves[testWave->getWaveNum()]);
 			//testWave->incrementWaves();
 
-			testWave->resetWave(5, 22.f, "bug.png", randomPath.getStart(), chess.getPosition().y);
+			testWave->resetWave(1, 22.f, "bug.png", randomPath.getStart(), chess.getPosition().y);
 			randomPath.generateNewPath();
 		}
 
 		//LOOP THROUGH WAVE
 		for (int i = 0; i < testWave->getSize(); i++) {
+
+			//added as a check, is this needed? do this to all sprites?
+			if (!background.getGlobalBounds().contains(testWave->getEnemy(i).getSprite().getPosition()));
+				testWave->getEnemy(i).setIsActive(false);
 
 			testWave->checkEnemyActivity(i);
 
