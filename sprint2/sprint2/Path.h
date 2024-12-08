@@ -3,18 +3,25 @@
 
 class Path {
 	private:
-		map <int, Point> PointsMap;
+		vector <Point*> PointsMap;
 		sf::Vector2f Start;
 		sf::Vector2f Goal;
+		int WindowXY = 0;
+		int TurnQty = 0;
+		int XSegments = 0, YSegments = 0;
+		int A = 0, B = 0;
 
 	public:
 		Path() {}
-		Path(float x, float y, map <int, Point> point);
-		void rerollPath();
-		sf::Vector2f getStart();
-		Point getPoint(int point);
+		//Path(float x, float y, vector <Point*> point, sf::Vector2f goal);
+		Path(int windowXY, sf::Vector2f goal);
 
-		//map <int, Point> getPointsMap();
+		void randomizeStart();
+		void setTurnsAndSegments();
+		void generateNewPath();
+		sf::Vector2f getStart();
+		sf::Vector2f getGoal();
+		Point* getPoint(int point);
+		int getMapSize();
 		~Path() {}
 };
-
