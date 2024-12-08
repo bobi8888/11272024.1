@@ -16,15 +16,13 @@ class Wave {
 		//Wave(int size, float speed, string texture, sf::Vector2f startPos, float targetY);
 		Wave(int size, float speed, string texture, Path path);
 		void updateActiveEnemyPositions(Path path);
-		void updateEnemyActivity(Path path);
+		void updateEnemyActivity(Path path, sf::Sprite target);
 		int getSize();
 		Enemy getEnemy(int enemy);
 		void activateNextEnemy();
 		int getEnemyNum();
-		void checkEnemyActivity(int enemy);
 		void setEnemyHP(int enemy, float damage);
 		int getRemainingUnits();
-		void updateRemainingUnits();
 		void resetWave(int size, float speed, string texture, Path path);
 		~Wave(){}
 };

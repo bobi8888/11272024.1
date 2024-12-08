@@ -54,23 +54,28 @@ void Wave::updateActiveEnemyPositions(Path path) {
 		}
 	}
 }
-void Wave::updateEnemyActivity(Path path) {
+void Wave::updateEnemyActivity(Path path, sf::Sprite target) {
 
 	for (int i = 0; i < Size; i++) {
 
 		bool destroy = false;
 
-		if (path.getMapSize() == Enemies.at(i)->getPathIndex() && Enemies.at(i)->getIsActive())
-			destroy = true;
+		if (Enemies.at(i)->getIsActive()) {
 
-		if (Enemies.at(i)->getX() > 800 || Enemies.at(i)->getY() < 0 || Enemies.at(i)->getY() > 800) 	
-			destroy = true;
-		
-		if (destroy) {
+			if (Enemies.at(i)->getHP() <= 0) {
+				destroy = true;
+			}
 
-			Enemies.at(i)->setIsActive(false);
+			if (target.getGlobalBounds().contains(Enemies.at(i)->getSprite().getPosition())) {
+				destroy = true;
+			}
+				
+			if (destroy) {
 
-			RemainingUnits--;
+				Enemies.at(i)->setIsActive(false);
+
+				RemainingUnits--;
+			}
 		}
 	}	
 }
@@ -87,22 +92,11 @@ void Wave::activateNextEnemy() {
 int Wave::getEnemyNum() {
 	return EnemyNum;
 }
-void Wave::checkEnemyActivity(int enemy) {
-	Enemies[enemy]->hpCheckForActivity();
-}
 void Wave::setEnemyHP(int enemy, float damage) {
 	Enemies[enemy]->setHP(damage);
 }
 int Wave::getRemainingUnits() {
 	return RemainingUnits;
-}
-void Wave::updateRemainingUnits() {
-
-	for (int i = 0; i < Size; i++) {
-
-		if (Enemies.at(i)->isDestroyed())
-			RemainingUnits--;		
-	}
 }
 void Wave::resetWave(int size, float speed, string texture, Path path) {
 

@@ -136,17 +136,18 @@ background.setPosition(centerOfScreen);
 
 			randomPath.generateNewPath();
 
-			testWave->resetWave(1, 22.f, "bug.png", randomPath);
+			testWave->resetWave(15, 5.f, "bug.png", randomPath);
 		}
 
 		//LOOP THROUGH WAVE
 		for (int i = 0; i < testWave->getSize(); i++) {
 
+			if (chess.getGlobalBounds().contains(testWave->getEnemy(i).getSprite().getPosition())) {
+			}
+
 			//added as a check, is this needed? do this to all sprites?
 			if (!background.getGlobalBounds().contains(testWave->getEnemy(i).getSprite().getPosition()));
 				testWave->getEnemy(i).setIsActive(false);
-
-			testWave->checkEnemyActivity(i);
 
 			if (testWave->getEnemy(i).getIsActive()) 
 				window.draw(testWave->getEnemy(i).getSprite());
@@ -207,8 +208,6 @@ background.setPosition(centerOfScreen);
 
 				for (int j = 0; j < testWave->getSize(); j++) {
 
-					testWave->updateRemainingUnits();
-
 					if (testWave->getEnemy(j).getIsActive()) 
 						hyp = sqrt(pow(abs(towers.at(i)->getPosition().x - testWave->getEnemy(j).getX()), 2) + pow(abs(towers.at(i)->getPosition().y - testWave->getEnemy(j).getY()), 2));
 					
@@ -225,8 +224,7 @@ background.setPosition(centerOfScreen);
 							enemyPosition = testWave->getEnemy(j).getSprite().getPosition();
 
 						} else 
-							targetDist = targetDist;
-						
+							targetDist = targetDist;						
 
 						Bullet* bullet = new Bullet("key.png", towers.at(i)->getPosition(), enemyPosition);
 
@@ -246,9 +244,7 @@ background.setPosition(centerOfScreen);
 
 			frameClock->restart();
 
-			testWave->updateRemainingUnits();
-
-			testWave->updateEnemyActivity(randomPath);
+			testWave->updateEnemyActivity(randomPath, chess);
 
 			testWave->updateActiveEnemyPositions(randomPath);
 		}

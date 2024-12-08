@@ -44,8 +44,6 @@ class Enemy {
 
 		float getHP();
 		void setHP(float damage);
-		void hpCheckForActivity();
-		bool isDestroyed();
 		void healHP();
 
 		bool getIsAboveMid();
