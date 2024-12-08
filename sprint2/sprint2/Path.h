@@ -9,6 +9,7 @@ class Path {
 		int WindowXY = 0;
 		int TurnQty = 0;
 		int XSegments = 0, YSegments = 0;
+		int A = 0, B = 0;
 
 	public:
 		Path() {}

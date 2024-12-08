@@ -13,7 +13,8 @@ class Wave {
 
 	public:
 		Wave();
-		Wave(int size, float speed, string texture, sf::Vector2f startPos, float targetY);
+		//Wave(int size, float speed, string texture, sf::Vector2f startPos, float targetY);
+		Wave(int size, float speed, string texture, Path path);
 		void updateActiveEnemyPositions(Path path);
 		void updateEnemyActivity(Path path);
 		int getSize();
@@ -24,7 +25,7 @@ class Wave {
 		void setEnemyHP(int enemy, float damage);
 		int getRemainingUnits();
 		void updateRemainingUnits();
-		void resetWave(int size, float speed, string texture, sf::Vector2f startPos, float targetY);
+		void resetWave(int size, float speed, string texture, Path path);
 		~Wave(){}
 };
 

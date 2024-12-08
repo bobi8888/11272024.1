@@ -1,5 +1,7 @@
 #pragma once
 #include "utils.h"
+#include "Path.h"
+
 
 class Enemy {
 	private:
@@ -19,6 +21,7 @@ class Enemy {
 		Enemy(){}
 		Enemy(string sprite, sf::Vector2f position);
 		Enemy(string sprite, sf::Vector2f position, float speed, float targetY);
+		Enemy(string sprite, float speed, Path path);
 
 		sf::Sprite getSprite();
 		void setPosition(sf::Vector2f position);
@@ -44,6 +47,8 @@ class Enemy {
 		void hpCheckForActivity();
 		bool isDestroyed();
 		void healHP();
+
+		bool getIsAboveMid();
 
 		~Enemy(){}
 };

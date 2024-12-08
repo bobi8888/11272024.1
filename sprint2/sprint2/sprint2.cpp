@@ -81,7 +81,7 @@ chess.setPosition(sf::Vector2f(windowXY - 25, windowXY / 2));
 Path randomPath(windowXY, chess.getPosition());
 
 //Wave* testWave = new Wave(3, 22.f, "bug.png", randomPath.getStart(), randomPath.getGoal().y);
-Wave* testWave = new Wave(1, 22.f, "bug.png", randomPath.getStart(), chess.getPosition().y);
+Wave* testWave = new Wave(1, 22.f, "bug.png", randomPath);
 
 Wave* Waves[10];
 Waves[0] = testWave;
@@ -134,8 +134,9 @@ background.setPosition(centerOfScreen);
 			//testWave->resetWave(Waves[testWave->getWaveNum()]);
 			//testWave->incrementWaves();
 
-			testWave->resetWave(1, 22.f, "bug.png", randomPath.getStart(), chess.getPosition().y);
 			randomPath.generateNewPath();
+
+			testWave->resetWave(1, 22.f, "bug.png", randomPath);
 		}
 
 		//LOOP THROUGH WAVE
@@ -147,9 +148,9 @@ background.setPosition(centerOfScreen);
 
 			testWave->checkEnemyActivity(i);
 
-			if (testWave->getEnemy(i).getIsActive()) {
+			if (testWave->getEnemy(i).getIsActive()) 
 				window.draw(testWave->getEnemy(i).getSprite());
-			}
+			
 		}
 
 		//LOOP THROUGH BULLETS
@@ -164,8 +165,11 @@ background.setPosition(centerOfScreen);
 				if (testWave->getEnemy(j).getIsActive()) {
 
 					if (bullets.at(i)->hitEnemy(testWave->getEnemy(j).getSprite().getGlobalBounds())) {
+
 						bullets.at(i)->setIsActive(false);
+
 						testWave->setEnemyHP(j, bullets.at(i)->getDamage());
+
 						break;
 					}
 				}
@@ -180,8 +184,11 @@ background.setPosition(centerOfScreen);
 			canBuild = true;
 
 		if (myMouse->validLeftClick(event) && canBuild) {
+
 			towers.push_back(new Tower("switch.png", myMouse->getPosition(window)));
+
 			buildClock->restart();
+
 			canBuild = false;
 		}
 
@@ -189,9 +196,11 @@ background.setPosition(centerOfScreen);
 		for (int i = 0; i < towers.size(); i++) {
 
 			window.draw(towers.at(i)->getSprite());
+
 			towers.at(i)->updateCanFire();
 
 			if (towers.at(i)->getCanFire()) {
+
 				float targetDist = 10000.f;
 				float hyp = 0.f;
 				sf::Vector2f enemyPosition;
@@ -200,25 +209,29 @@ background.setPosition(centerOfScreen);
 
 					testWave->updateRemainingUnits();
 
-					if (testWave->getEnemy(j).getIsActive()) {
+					if (testWave->getEnemy(j).getIsActive()) 
 						hyp = sqrt(pow(abs(towers.at(i)->getPosition().x - testWave->getEnemy(j).getX()), 2) + pow(abs(towers.at(i)->getPosition().y - testWave->getEnemy(j).getY()), 2));
-					}
-					else {
+					
+					else 
 						hyp = 10000.f;
-					}
+					
 
 					if (hyp < towers.at(i)->getRange() && towers.at(i)->getCanFire()) {
 
 						if (hyp < targetDist) {
+
 							targetDist = hyp;
+
 							enemyPosition = testWave->getEnemy(j).getSprite().getPosition();
-						}
-						else {
+
+						} else 
 							targetDist = targetDist;
-						}
+						
 
 						Bullet* bullet = new Bullet("key.png", towers.at(i)->getPosition(), enemyPosition);
+
 						bullets.push_back(bullet);
+
 						towers.at(i)->setCanFire(false);
 					}
 				}

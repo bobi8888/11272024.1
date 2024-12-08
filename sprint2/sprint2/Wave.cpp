@@ -1,14 +1,16 @@
 #include "Wave.h"
 
 Wave::Wave() {}
-Wave::Wave(int size, float speed, string texture, sf::Vector2f startPos, float targetY) {
+
+//Wave::Wave(int size, float speed, string texture, sf::Vector2f startPos, float targetY) {
+Wave::Wave(int size, float speed, string texture, Path path) {
 
 	Size = size;
 	RemainingUnits = size;
 
 	for (int i = 0; i < size; i++) {
 
-		Enemy* enemy = new Enemy(texture, startPos, speed, targetY);
+		Enemy* enemy = new Enemy(texture, speed, path);
 
 		Enemies.push_back(enemy);
 	}
@@ -34,10 +36,14 @@ void Wave::updateActiveEnemyPositions(Path path) {
 			
 			} else {
 
-				if (Enemies.at(i)->getPrevY() + path.getPoint(Enemies.at(i)->getPathIndex())->Dist > Enemies.at(i)->getY()) {
+				if (!Enemies.at(i)->getIsAboveMid() && Enemies.at(i)->getPrevY() - path.getPoint(Enemies.at(i)->getPathIndex())->Dist < Enemies.at(i)->getY()) {
 
 					Enemies.at(i)->updateY();	
+
+				} else  if (Enemies.at(i)->getIsAboveMid() && Enemies.at(i)->getPrevY() + path.getPoint(Enemies.at(i)->getPathIndex())->Dist > Enemies.at(i)->getY()) {
 					
+					Enemies.at(i)->updateY();
+
 				} else {
 
 					Enemies.at(i)->incrementPathIndex();
@@ -98,11 +104,9 @@ void Wave::updateRemainingUnits() {
 			RemainingUnits--;		
 	}
 }
-void Wave::resetWave(int size, float speed, string texture, sf::Vector2f startPos, float targetY) {
+void Wave::resetWave(int size, float speed, string texture, Path path) {
 
 	if (RemainingUnits <= 0) {
-
-		cout << "Wave destroyed";
 
 		Enemies.clear();
 
@@ -113,7 +117,7 @@ void Wave::resetWave(int size, float speed, string texture, sf::Vector2f startPo
 
 		for (int i = 0; i < size; i++) {
 
-			Enemy* enemy = new Enemy(texture, startPos, speed, targetY);
+			Enemy* enemy = new Enemy(texture, speed, path);
 
 			Enemies.push_back(enemy);
 		}
