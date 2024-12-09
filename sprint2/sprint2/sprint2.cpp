@@ -136,7 +136,8 @@ background.setPosition(centerOfScreen);
 
 			randomPath.generateNewPath();
 
-			testWave->resetWave(15, 5.f, "bug.png", randomPath);
+			//memory leak when wave resets
+			testWave->resetWave(15, 1.f, "bug.png", randomPath);
 		}
 
 		//LOOP THROUGH WAVE

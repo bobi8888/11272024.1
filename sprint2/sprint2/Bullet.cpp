@@ -2,17 +2,23 @@
 #include "Bullet.h"
 
 Bullet::Bullet(string sprite, sf::Vector2f position, sf::Vector2f target) {
+
 	Texture.loadFromFile(sprite);
+
 	Sprite.setTexture(Texture);
 	Sprite.setScale(0.15, 0.15);
 	Sprite.setOrigin(Sprite.getLocalBounds().width / 2, Sprite.getLocalBounds().height / 2);
 	Sprite.setPosition(position);
+
 	Target = target;
-	DeltaX = round(((target.x - position.x) / Speed) * 100.0) / 100.0;
-	DeltaY = round(((target.y - position.y) / Speed) * 100.0) / 100.0;
-	cout << "\n DeltaX: " << DeltaX << " & DeltaY: " << DeltaY;
+
+	float hyp = sqrt(pow(abs(target.x - position.x), 2) + pow(abs(target.y - position.y), 2));
+	
+	DeltaX = round(target.x - position.x) / hyp;
+	DeltaY = round(target.y - position.y) / hyp;
 }
 void Bullet::updatePosition() {
+	//theory: the delta x&y set in the constructor is what controls the speed 
 	Sprite.setPosition(Sprite.getPosition().x + DeltaX, Sprite.getPosition().y + DeltaY);
 }
 bool Bullet::hitEnemy(sf::FloatRect enemyBB) {
