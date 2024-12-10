@@ -12,16 +12,23 @@ class Enemy {
 		float Speed = 10;
 		int PathIndex = 0;
 		bool IsActive = false;
-		bool IsAlive = true;
 		int Value = 50;
 		float PrevX = 0.f, PrevY = 0.f;
 		bool IsAboveMid;
+		int Damage = 25;
 
 	public:
 		Enemy(){}
 		Enemy(string sprite, sf::Vector2f position);
 		Enemy(string sprite, sf::Vector2f position, float speed, float targetY);
 		Enemy(string sprite, float speed, Path path);
+
+		bool IsAlive = true;
+
+		int getDamage();
+		void setDamage(int dmg);
+		bool getIsAlive();
+		void setIsAlive(bool isAlive);
 
 		sf::Sprite getSprite();
 		void setPosition(sf::Vector2f position);

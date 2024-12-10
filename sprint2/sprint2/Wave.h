@@ -22,9 +22,13 @@ class Wave {
 		Enemy getEnemy(int enemy);
 		void activateNextEnemy();
 		int getEnemyNum();
+		void killEnemy(int enemy);
 		void setEnemyHP(int enemy, float damage);
+		void setEnemyDamage(int enemy, float dmg);
+		void setEnemyActivity(int enemy, bool isActive);
 		int getRemainingUnits();
 		void resetWave(int size, float speed, string texture, Path path);
+		void cullEnemies();
 		~Wave(){}
 };
 

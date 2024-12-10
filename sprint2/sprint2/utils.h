@@ -10,6 +10,7 @@
 #include <ctime>
 #include <functional>
 #include <vector>
+#include <algorithm>
 
 using std::cout;
 using std::string;
@@ -20,5 +21,6 @@ using std::time;
 using std::srand;
 using std::function;
 using std::to_string;
+using std::remove_if;
 
 //float g_screenCenterY = 400.f;

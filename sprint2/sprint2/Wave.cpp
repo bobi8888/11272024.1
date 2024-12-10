@@ -56,8 +56,6 @@ void Wave::updateActiveEnemyPositions(Path path) {
 }
 void Wave::updateEnemyActivity(Path path, sf::Sprite target) {
 
-	//int amount = 0;
-
 	for (int i = 0; i < Size; i++) {
 
 		bool destroy = false;
@@ -75,12 +73,9 @@ void Wave::updateEnemyActivity(Path path, sf::Sprite target) {
 				Enemies.at(i)->setIsActive(false);
 
 				RemainingUnits--;
-
-				//amount += Enemies.at(i)->getValue();
 			}
 		}
 	}	
-	//return amount;
 }
 int Wave::getSize()
 {
@@ -95,8 +90,17 @@ void Wave::activateNextEnemy() {
 int Wave::getEnemyNum() {
 	return EnemyNum;
 }
+void Wave::killEnemy(int enemy) {
+	Enemies[enemy]->setIsAlive(false);
+}
 void Wave::setEnemyHP(int enemy, float damage) {
 	Enemies[enemy]->setHP(damage);
+}
+void Wave::setEnemyActivity(int enemy, bool isActive) {
+	Enemies[enemy]->setIsActive(isActive);
+}
+void Wave::setEnemyDamage(int enemy, float dmg) {
+	Enemies[enemy]->setDamage(dmg);
 }
 int Wave::getRemainingUnits() {
 	return RemainingUnits;
@@ -118,11 +122,19 @@ void Wave::resetWave(int size, float speed, string texture, Path path) {
 
 			Enemies.push_back(enemy);
 		}
-
 		//for (int i = 0; i < Size; i++) {
 		//	Enemies.at(i)->healHP();
 		//	Enemies.at(i)->setIsActive(false);
 		//	Enemies.at(i)->setPosition(position);
 		//}
 	}
+}
+
+void Wave::cullEnemies() {
+
+	auto newEnd = remove_if(Enemies.begin(), Enemies.end(), [](const Enemy* obj) { return obj->IsAlive == false; });
+
+	Enemies.erase(newEnd, Enemies.end());
+
+	Size = Enemies.size();
 }

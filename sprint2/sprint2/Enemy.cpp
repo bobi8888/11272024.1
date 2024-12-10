@@ -21,6 +21,18 @@ Enemy::Enemy(string sprite, float speed, Path path) {
 	else 
 		IsAboveMid = true;	
 }
+int Enemy::getDamage() {
+	return Damage;
+}
+void Enemy::setDamage(int dmg) {
+	Damage = dmg;
+}
+bool Enemy::getIsAlive() {
+	return IsAlive;
+}
+void Enemy::setIsAlive(bool isAlive) {
+	IsAlive = isAlive;
+}
 sf::Sprite Enemy::getSprite() {
 	return Sprite;
 }

@@ -1,4 +1,8 @@
-﻿  sprint2.cpp
+﻿  Base.cpp
+  Wave.cpp
+C:\Users\1stBuild\Desktop\1127test\take2\GitRemoteCon\sprint2\sprint2\Wave.cpp(103,28): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\1stBuild\Desktop\1127test\take2\GitRemoteCon\sprint2\sprint2\Wave.cpp(139,21): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+  sprint2.cpp
 C:\Users\1stBuild\Desktop\1127test\take2\GitRemoteCon\sprint2\sprint2\sprint2.cpp(31,6): warning C4326: return type of 'main' should be 'int' instead of 'void'
 C:\Users\1stBuild\Desktop\1127test\take2\GitRemoteCon\sprint2\sprint2\sprint2.cpp(38,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
 C:\Users\1stBuild\Desktop\1127test\take2\GitRemoteCon\sprint2\sprint2\sprint2.cpp(48,53): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
@@ -11,15 +15,11 @@ C:\Users\1stBuild\Desktop\1127test\take2\GitRemoteCon\sprint2\sprint2\sprint2.cp
 C:\Users\1stBuild\Desktop\1127test\take2\GitRemoteCon\sprint2\sprint2\sprint2.cpp(48,39): warning C4244:         [
 C:\Users\1stBuild\Desktop\1127test\take2\GitRemoteCon\sprint2\sprint2\sprint2.cpp(48,39): warning C4244:             T=float
 C:\Users\1stBuild\Desktop\1127test\take2\GitRemoteCon\sprint2\sprint2\sprint2.cpp(48,39): warning C4244:         ]
-C:\Users\1stBuild\Desktop\1127test\take2\GitRemoteCon\sprint2\sprint2\sprint2.cpp(81,56): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-C:\Users\1stBuild\Desktop\1127test\take2\GitRemoteCon\sprint2\sprint2\sprint2.cpp(81,56): warning C4244:         with
-C:\Users\1stBuild\Desktop\1127test\take2\GitRemoteCon\sprint2\sprint2\sprint2.cpp(81,56): warning C4244:         [
-C:\Users\1stBuild\Desktop\1127test\take2\GitRemoteCon\sprint2\sprint2\sprint2.cpp(81,56): warning C4244:             T=float
-C:\Users\1stBuild\Desktop\1127test\take2\GitRemoteCon\sprint2\sprint2\sprint2.cpp(81,56): warning C4244:         ]
-C:\Users\1stBuild\Desktop\1127test\take2\GitRemoteCon\sprint2\sprint2\sprint2.cpp(81,41): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-C:\Users\1stBuild\Desktop\1127test\take2\GitRemoteCon\sprint2\sprint2\sprint2.cpp(81,41): warning C4244:         with
-C:\Users\1stBuild\Desktop\1127test\take2\GitRemoteCon\sprint2\sprint2\sprint2.cpp(81,41): warning C4244:         [
-C:\Users\1stBuild\Desktop\1127test\take2\GitRemoteCon\sprint2\sprint2\sprint2.cpp(81,41): warning C4244:             T=float
-C:\Users\1stBuild\Desktop\1127test\take2\GitRemoteCon\sprint2\sprint2\sprint2.cpp(81,41): warning C4244:         ]
-C:\Users\1stBuild\Desktop\1127test\take2\GitRemoteCon\sprint2\sprint2\sprint2.cpp(224,17): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\1stBuild\Desktop\1127test\take2\GitRemoteCon\sprint2\sprint2\sprint2.cpp(76,51): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\1stBuild\Desktop\1127test\take2\GitRemoteCon\sprint2\sprint2\sprint2.cpp(76,51): warning C4244:         with
+C:\Users\1stBuild\Desktop\1127test\take2\GitRemoteCon\sprint2\sprint2\sprint2.cpp(76,51): warning C4244:         [
+C:\Users\1stBuild\Desktop\1127test\take2\GitRemoteCon\sprint2\sprint2\sprint2.cpp(76,51): warning C4244:             T=float
+C:\Users\1stBuild\Desktop\1127test\take2\GitRemoteCon\sprint2\sprint2\sprint2.cpp(76,51): warning C4244:         ]
+C:\Users\1stBuild\Desktop\1127test\take2\GitRemoteCon\sprint2\sprint2\sprint2.cpp(235,18): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  Generating Code...
   sprint2.vcxproj -> C:\Users\1stBuild\Desktop\1127test\take2\GitRemoteCon\sprint2\x64\Debug\sprint2.exe

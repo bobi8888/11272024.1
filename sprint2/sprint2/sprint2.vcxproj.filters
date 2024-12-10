@@ -45,6 +45,9 @@
     <ClCompile Include="EnemyDestroyedEvent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Base.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="utils.h">
@@ -75,6 +78,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="EnemyDestroyedEvent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Base.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
