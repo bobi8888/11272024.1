@@ -21,9 +21,9 @@ void Wave::updateActiveEnemyPositions(Path path) {
 
 		if (Enemies.at(i)->getIsActive()) {
 
-			if (path.getPoint(Enemies.at(i)->getPathIndex())->Dir == 'x') {
+			if (path.getPoint(Enemies.at(i)->getPathIndex()).Dir == 'x') {
 
-				if (Enemies.at(i)->getPrevX() + path.getPoint(Enemies.at(i)->getPathIndex())->Dist > Enemies.at(i)->getX()) {
+				if (Enemies.at(i)->getPrevX() + path.getPoint(Enemies.at(i)->getPathIndex()).Dist > Enemies.at(i)->getX()) {
 				
 					Enemies.at(i)->updateX();
 
@@ -36,11 +36,11 @@ void Wave::updateActiveEnemyPositions(Path path) {
 			
 			} else {
 
-				if (!Enemies.at(i)->getIsAboveMid() && Enemies.at(i)->getPrevY() - path.getPoint(Enemies.at(i)->getPathIndex())->Dist < Enemies.at(i)->getY()) {
+				if (!Enemies.at(i)->getIsAboveMid() && Enemies.at(i)->getPrevY() - path.getPoint(Enemies.at(i)->getPathIndex()).Dist < Enemies.at(i)->getY()) {
 
 					Enemies.at(i)->updateY();	
 
-				} else  if (Enemies.at(i)->getIsAboveMid() && Enemies.at(i)->getPrevY() + path.getPoint(Enemies.at(i)->getPathIndex())->Dist > Enemies.at(i)->getY()) {
+				} else  if (Enemies.at(i)->getIsAboveMid() && Enemies.at(i)->getPrevY() + path.getPoint(Enemies.at(i)->getPathIndex()).Dist > Enemies.at(i)->getY()) {
 					
 					Enemies.at(i)->updateY();
 

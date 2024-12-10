@@ -135,24 +135,22 @@ background.setPosition(centerOfScreen);
 			//testWave->incrementWaves();
 
 			randomPath.generateNewPath();
-
-			//memory leak when wave resets
-			testWave->resetWave(15, 1.f, "bug.png", randomPath);
+			
+			testWave->resetWave(3, 5.f, "bug.png", randomPath);
 		}
 
 		//LOOP THROUGH WAVE
 		for (int i = 0; i < testWave->getSize(); i++) {
 
-			if (chess.getGlobalBounds().contains(testWave->getEnemy(i).getSprite().getPosition())) {
-			}
+			if (testWave->getEnemy(i).getIsActive())
+				window.draw(testWave->getEnemy(i).getSprite());
+
+			//if (chess.getGlobalBounds().contains(testWave->getEnemy(i).getSprite().getPosition())) {
+			//}
 
 			//added as a check, is this needed? do this to all sprites?
-			if (!background.getGlobalBounds().contains(testWave->getEnemy(i).getSprite().getPosition()));
-				testWave->getEnemy(i).setIsActive(false);
-
-			if (testWave->getEnemy(i).getIsActive()) 
-				window.draw(testWave->getEnemy(i).getSprite());
-			
+			//if (!background.getGlobalBounds().contains(testWave->getEnemy(i).getSprite().getPosition()));
+			//	testWave->getEnemy(i).setIsActive(false);			
 		}
 
 		//LOOP THROUGH BULLETS

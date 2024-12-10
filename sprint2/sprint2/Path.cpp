@@ -1,14 +1,6 @@
 #include "utils.h"
 #include "Path.h"
 
-//Path::Path(float x, float y, vector <Point*> pointsMap, sf::Vector2f goal) {
-//	//randomize start?
-//	Start = sf::Vector2f(x,y);
-//	//generate PointsMap with rerollPath?
-//	PointsMap = pointsMap;
-//	//need an updateGoal method?
-//	Goal = goal;
-//}
 Path::Path(int windowXY, sf::Vector2f goal) {
 
 	WindowXY = windowXY;
@@ -50,7 +42,7 @@ void Path::setTurnsAndSegments() {
 }
 void Path::generateNewPath() {
 
-	PointsMap.clear();
+	Points.clear();
 
 	randomizeStart();
 
@@ -66,15 +58,15 @@ void Path::generateNewPath() {
 
 		if (mapIndex++ % 2 == 0) {
 
-			Point* xPoint = new Point('x', B);
+			Point xPoint('x', B);
 		
-			PointsMap.push_back(xPoint);
+			Points.push_back(xPoint);
 
 		} else {
 
-			Point* yPoint = new Point('y', A);
+			Point yPoint('y', A);
 
-			PointsMap.push_back(yPoint);
+			Points.push_back(yPoint);
 		}
 	}
 }
@@ -84,10 +76,9 @@ sf::Vector2f Path::getStart() {
 sf::Vector2f Path::getGoal() {
 	return Goal;
 }
-Point* Path::getPoint(int point) {
-	return PointsMap.at(point);
+Point Path::getPoint(int point) {
+	return Points.at(point);
 }
 int Path::getMapSize() {
-	return PointsMap.size();
+	return Points.size();
 }
-
