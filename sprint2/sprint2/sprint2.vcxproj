@@ -143,21 +143,25 @@
   <ItemGroup>
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="EnemyDestroyedEvent.cpp" />
     <ClCompile Include="Mouse.cpp" />
     <ClCompile Include="Path.cpp" />
     <ClCompile Include="Point.cpp" />
     <ClCompile Include="sprint2.cpp" />
     <ClCompile Include="Tower.cpp" />
+    <ClCompile Include="Wallet.cpp" />
     <ClCompile Include="Wave.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Enemy.h" />
+    <ClInclude Include="EnemyDestroyedEvent.h" />
     <ClInclude Include="Mouse.h" />
     <ClInclude Include="Path.h" />
     <ClInclude Include="Point.h" />
     <ClInclude Include="Tower.h" />
     <ClInclude Include="utils.h" />
+    <ClInclude Include="Wallet.h" />
     <ClInclude Include="Wave.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

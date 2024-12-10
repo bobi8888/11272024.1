@@ -13,7 +13,7 @@ class Enemy {
 		int PathIndex = 0;
 		bool IsActive = false;
 		bool IsAlive = true;
-
+		int Value = 50;
 		float PrevX = 0.f, PrevY = 0.f;
 		bool IsAboveMid;
 
@@ -45,8 +45,10 @@ class Enemy {
 		float getHP();
 		void setHP(float damage);
 		void healHP();
+		bool isDestroyed();
 
 		bool getIsAboveMid();
+		int getValue();
 
 		~Enemy(){}
 };

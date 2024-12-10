@@ -56,28 +56,31 @@ void Wave::updateActiveEnemyPositions(Path path) {
 }
 void Wave::updateEnemyActivity(Path path, sf::Sprite target) {
 
+	//int amount = 0;
+
 	for (int i = 0; i < Size; i++) {
 
 		bool destroy = false;
 
 		if (Enemies.at(i)->getIsActive()) {
 
-			if (Enemies.at(i)->getHP() <= 0) {
+			if (Enemies.at(i)->getHP() <= 0)
 				destroy = true;
-			}
 
-			if (target.getGlobalBounds().contains(Enemies.at(i)->getSprite().getPosition())) {
+			if (target.getGlobalBounds().contains(Enemies.at(i)->getSprite().getPosition()))
 				destroy = true;
-			}
 				
 			if (destroy) {
 
 				Enemies.at(i)->setIsActive(false);
 
 				RemainingUnits--;
+
+				//amount += Enemies.at(i)->getValue();
 			}
 		}
 	}	
+	//return amount;
 }
 int Wave::getSize()
 {

@@ -8,7 +8,8 @@
 
 #include <iostream>
 #include <ctime>
-//#include <algorithm>
+#include <functional>
+#include <vector>
 
 using std::cout;
 using std::string;
@@ -17,6 +18,7 @@ using std::vector;
 using std::round;
 using std::time;
 using std::srand;
-//using std::for_each;
+using std::function;
+using std::to_string;
 
 //float g_screenCenterY = 400.f;

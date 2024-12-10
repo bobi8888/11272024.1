@@ -6,6 +6,8 @@
 #include "Wave.h"
 #include "Bullet.h"
 #include "Tower.h"
+#include "Wallet.h"
+#include "EnemyDestroyedEvent.h"
 
 //class MyClass { 
 //	public: 
@@ -80,7 +82,6 @@ chess.setPosition(sf::Vector2f(windowXY - 25, windowXY / 2));
 
 Path randomPath(windowXY, chess.getPosition());
 
-//Wave* testWave = new Wave(3, 22.f, "bug.png", randomPath.getStart(), randomPath.getGoal().y);
 Wave* testWave = new Wave(1, 22.f, "bug.png", randomPath);
 
 Wave* Waves[10];
@@ -97,10 +98,14 @@ background.setTexture(bgTexture);
 background.setOrigin(background.getLocalBounds().width / 2, background.getLocalBounds().height / 2);
 background.setPosition(centerOfScreen);
 
+Wallet Wallet("RobotoCondensed-Regular.ttf", 40, sf::Vector2f(centerOfScreen.x, 25));
+
 //TODO:
 //implement currency for destroying enemeies to buy towers
 
 	while (window.isOpen())	{
+
+		//Wallet.onEvent(testWave->onEnemyDeath);
 
 		//DEV TOOLS
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
@@ -119,6 +124,8 @@ background.setPosition(centerOfScreen);
 		window.draw(background);
 
 		window.draw(chess);
+
+		window.draw(Wallet.getText());
 
 		//WAVE CLOCK
 		if (waveClock->getElapsedTime().asSeconds() > 1 && testWave->getEnemyNum() < testWave->getSize()) {
@@ -170,6 +177,9 @@ background.setPosition(centerOfScreen);
 
 						testWave->setEnemyHP(j, bullets.at(i)->getDamage());
 
+						if (testWave->getEnemy(j).isDestroyed())
+							Wallet.updateAmount(testWave->getEnemy(j).getValue());
+
 						break;
 					}
 				}
@@ -179,11 +189,14 @@ background.setPosition(centerOfScreen);
 				bullets.erase(bullets.begin() + i);
 		}
 
-		if (buildClock->getElapsedTime().asSeconds() > 1) 
 
+		//BUILDING TOWERS
+		if (buildClock->getElapsedTime().asSeconds() > 1) 
 			canBuild = true;
 
-		if (myMouse->validLeftClick(event) && canBuild) {
+		if (myMouse->validLeftClick(event) && canBuild && Wallet.getAmount() >= Wallet.getTowerCost()) {
+
+			Wallet.deductTowerCost();
 
 			towers.push_back(new Tower("switch.png", myMouse->getPosition(window)));
 
@@ -244,6 +257,8 @@ background.setPosition(centerOfScreen);
 			frameClock->restart();
 
 			testWave->updateEnemyActivity(randomPath, chess);
+
+			Wallet.updateAmountString();
 
 			testWave->updateActiveEnemyPositions(randomPath);
 		}

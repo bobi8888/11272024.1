@@ -6,7 +6,6 @@ Enemy::Enemy(string sprite, sf::Vector2f position) {
 	Sprite.setOrigin(Sprite.getLocalBounds().width / 2, Sprite.getLocalBounds().height / 2);
 	Sprite.setPosition(position);
 }
-//Enemy::Enemy(string sprite, sf::Vector2f position, float speed, float targetY) {
 Enemy::Enemy(string sprite, float speed, Path path) {
 
 	Texture.loadFromFile(sprite);
@@ -73,9 +72,18 @@ float Enemy::getHP() {
 void Enemy::setHP(float damage) {
 	HP = HP - damage;
 }
+bool Enemy::isDestroyed() {
+	if (HP <= 0) {
+		return true;
+	}
+	return false;
+}
 void Enemy::healHP() {
 	HP = BaselineHP;
 }
 bool Enemy::getIsAboveMid() {
 	return IsAboveMid;
+}
+int Enemy::getValue() {
+	return Value;
 }

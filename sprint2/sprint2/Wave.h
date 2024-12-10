@@ -3,6 +3,7 @@
 #include "Path.h"
 #include "Enemy.h"
 
+
 class Wave {
 	private:
 		vector <Enemy*> Enemies;
