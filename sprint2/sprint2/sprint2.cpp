@@ -8,6 +8,7 @@
 #include "Tower.h"
 #include "Wallet.h"
 #include "Base.h"
+#include "GameScreen.h"
 
 //class MyClass { 
 //	public: 
@@ -63,8 +64,6 @@ void main() {
 sf::Clock* frameClock = new sf::Clock;
 frameClock->restart();
 
-int frameNum = 0;
-
 sf::Clock* waveClock = new sf::Clock;
 waveClock->restart();
 
@@ -87,14 +86,11 @@ vector <Tower*> towers;
 vector <Bullet*> bullets;
 
 //create background class so that sprites can deposit death spots on the background
-sf::Texture bgTexture;
-bgTexture.loadFromFile("intoRed.png");
-sf::Sprite background;
-background.setTexture(bgTexture);
-background.setOrigin(background.getLocalBounds().width / 2, background.getLocalBounds().height / 2);
-background.setPosition(centerOfScreen);
+GameScreen background("intoRed.png", centerOfScreen);
+GameScreen gameover("centerNoChessPiece.png", centerOfScreen, "RobotoCondensed-Regular.ttf", 50, centerOfScreen, "Game Over");
 
 Wallet Wallet("RobotoCondensed-Regular.ttf", 40, sf::Vector2f(centerOfScreen.x, 25));
+bool pause = false;
 
 //TODO:
  		//Frame rate is affecting speed of sprites: unitize sprite movement
@@ -115,149 +111,156 @@ Wallet Wallet("RobotoCondensed-Regular.ttf", 40, sf::Vector2f(centerOfScreen.x, 
 		}
 
 		//FRAMES
-		if (frameNum > 60) frameNum = 0;
 
 		//Frame rate is affecting speed of sprites
-		if (frameClock->getElapsedTime().asMilliseconds() > 16.66) {
 
-			frameClock->restart();
 
-			testWave->updateEnemyActivity(randomPath, base.getSprite());
+			if (frameClock->getElapsedTime().asMilliseconds() > 16.66) {
 
-			Wallet.updateAmountString();
+				window.display();
+				window.clear();
 
-			testWave->updateActiveEnemyPositions(randomPath);
+				if (!pause) {
 
-			testWave->cullEnemies();		
+					window.draw(Wallet.getText());
 
-			window.display();
+					frameClock->restart();
 
-			window.clear();
+					Wallet.updateAmountString();
 
-			window.draw(background);
+					testWave->updateEnemyActivity(randomPath, base.getSprite());
+					testWave->updateActiveEnemyPositions(randomPath);
+					testWave->cullEnemies();	
 
-			base.drawBase(window);
+					background.drawScreen(window);
 
-			window.draw(Wallet.getText());
+					base.drawBase(window);
 
-			//WAVE CLOCK
-			if (waveClock->getElapsedTime().asSeconds() > 1 && testWave->getEnemyNum() < testWave->getSize()) {
+					//WAVE CLOCK
+					if (waveClock->getElapsedTime().asSeconds() > 1 && testWave->getEnemyNum() < testWave->getSize()) {
 
-				waveClock->restart();
+						waveClock->restart();
 
-				testWave->activateNextEnemy();
-			}
-
-			//WAVE DESTROYED
-			if (testWave->getRemainingUnits() == 0) {
-
-				randomPath.generateNewPath();
-			
-				testWave->resetWave(3, 5.f, "bug.png", randomPath);
-			}
-
-			//LOOP THROUGH WAVE
-			for (int i = 0; i < testWave->getSize(); i++) {
-
-				if (testWave->getEnemy(i).getIsActive() && base.getSprite().getGlobalBounds().contains(testWave->getEnemy(i).getSprite().getPosition())) {
-					base.damageHP(testWave->getEnemy(i).getDamage());
-					testWave->setEnemyDamage(i, 0);
-					//testWave->setEnemyActivity(i, false);
-					testWave->killEnemy(i);
-				}
-
-				if (testWave->getEnemy(i).getIsActive())
-					window.draw(testWave->getEnemy(i).getSprite());			
-			}
-
-			//LOOP THROUGH BULLETS
-			for (int i = 0; i < bullets.size(); i++) {
-
-				bullets.at(i)->updatePosition();
-
-				window.draw(bullets.at(i)->getSprite());
-
-				for (int j = 0; j < testWave->getSize(); j++) {
-
-					if (testWave->getEnemy(j).getIsActive()) {
-
-						if (bullets.at(i)->hitEnemy(testWave->getEnemy(j).getSprite().getGlobalBounds())) {
-
-							bullets.at(i)->setIsActive(false);
-
-							testWave->setEnemyHP(j, bullets.at(i)->getDamage());
-
-							if (testWave->getEnemy(j).isDestroyed())
-								Wallet.updateAmount(testWave->getEnemy(j).getValue());
-
-							break;
-						}
+						testWave->activateNextEnemy();
 					}
-				}
+
+					//WAVE DESTROYED
+					if (testWave->getRemainingUnits() == 0) {
+
+						randomPath.generateNewPath();
 			
-				if (!background.getGlobalBounds().contains(bullets.at(i)->getSprite().getPosition()) || !bullets.at(i)->getIsActive())
-					bullets.erase(bullets.begin() + i);
-			}
+						testWave->resetWave(3, 5.f, "bug.png", randomPath);
+					}
+
+					//LOOP THROUGH WAVE
+					for (int i = 0; i < testWave->getSize(); i++) {
+
+						if (testWave->getEnemy(i).getIsActive() && base.getSprite().getGlobalBounds().contains(testWave->getEnemy(i).getSprite().getPosition())) {
+							base.damageHP(testWave->getEnemy(i).getDamage());
+							testWave->setEnemyDamage(i, 0);
+							//testWave->setEnemyActivity(i, false);
+							testWave->killEnemy(i);
+						}
+
+						if (testWave->getEnemy(i).getIsActive())
+							window.draw(testWave->getEnemy(i).getSprite());			
+					}
+
+					//LOOP THROUGH BULLETS
+					for (int i = 0; i < bullets.size(); i++) {
+
+						bullets.at(i)->updatePosition();
+
+						window.draw(bullets.at(i)->getSprite());
+
+						for (int j = 0; j < testWave->getSize(); j++) {
+
+							if (testWave->getEnemy(j).getIsActive()) {
+
+								if (bullets.at(i)->hitEnemy(testWave->getEnemy(j).getSprite().getGlobalBounds())) {
+
+									bullets.at(i)->setIsActive(false);
+
+									testWave->setEnemyHP(j, bullets.at(i)->getDamage());
+
+									if (testWave->getEnemy(j).isDestroyed())
+										Wallet.updateAmount(testWave->getEnemy(j).getValue());
+
+									break;
+								}
+							}
+						}
+			
+						//if (!background.getGlobalBounds().contains(bullets.at(i)->getSprite().getPosition()) || !bullets.at(i)->getIsActive())
+						if (!background.contains(bullets.at(i)->getSprite().getPosition()) || !bullets.at(i)->getIsActive())
+							bullets.erase(bullets.begin() + i);
+					}
 
 
-			//BUILDING TOWERS
-			if (buildClock->getElapsedTime().asSeconds() > 1) 
-				canBuild = true;
+					//BUILDING TOWERS
+					if (buildClock->getElapsedTime().asSeconds() > 1) 
+						canBuild = true;
 
-			if (myMouse->validLeftClick(event) && canBuild && Wallet.getAmount() >= Wallet.getTowerCost()) {
+					if (myMouse->validLeftClick(event) && canBuild && Wallet.getAmount() >= Wallet.getTowerCost()) {
 
-				Wallet.deductTowerCost();
+						Wallet.deductTowerCost();
 
-				towers.push_back(new Tower("switch.png", myMouse->getPosition(window)));
+						towers.push_back(new Tower("switch.png", myMouse->getPosition(window)));
 
-				buildClock->restart();
+						buildClock->restart();
 
-				canBuild = false;
-			}
+						canBuild = false;
+					}
 
-			//LOOP THROUGH TOWERS
-			for (int i = 0; i < towers.size(); i++) {
+					//LOOP THROUGH TOWERS
+					for (int i = 0; i < towers.size(); i++) {
 
-				window.draw(towers.at(i)->getSprite());
+						window.draw(towers.at(i)->getSprite());
 
-				towers.at(i)->updateCanFire();
+						towers.at(i)->updateCanFire();
 
-				if (towers.at(i)->getCanFire()) {
+						if (towers.at(i)->getCanFire()) {
 
-					//what is targetDist doing?
-					float targetDist = 10000.f;
-					float hyp = 0.f;
-					sf::Vector2f enemyPosition;
+							//what is targetDist doing?
+							float targetDist = 10000.f;
+							float hyp = 0.f;
+							sf::Vector2f enemyPosition;
 
-					for (int j = 0; j < testWave->getSize(); j++) {
+							for (int j = 0; j < testWave->getSize(); j++) {
 
-						if (testWave->getEnemy(j).getIsActive()) 
-							hyp = sqrt(pow(abs(towers.at(i)->getPosition().x - testWave->getEnemy(j).getX()), 2) + pow(abs(towers.at(i)->getPosition().y - testWave->getEnemy(j).getY()), 2));
+								if (testWave->getEnemy(j).getIsActive()) 
+									hyp = sqrt(pow(abs(towers.at(i)->getPosition().x - testWave->getEnemy(j).getX()), 2) + pow(abs(towers.at(i)->getPosition().y - testWave->getEnemy(j).getY()), 2));
 					
-						else 
-							hyp = 10000.f;					
+								else 
+									hyp = 10000.f;					
 
-						if (hyp < towers.at(i)->getRange() && towers.at(i)->getCanFire()) {
+								if (hyp < towers.at(i)->getRange() && towers.at(i)->getCanFire()) {
 
-							if (hyp < targetDist) {
+									if (hyp < targetDist) {
 
-								targetDist = hyp;
+										targetDist = hyp;
 
-								enemyPosition = testWave->getEnemy(j).getSprite().getPosition();
+										enemyPosition = testWave->getEnemy(j).getSprite().getPosition();
 
-							} else 
-								targetDist = targetDist;						
+									} else 
+										targetDist = targetDist;						
 
-							Bullet* bullet = new Bullet("key.png", towers.at(i)->getPosition(), enemyPosition);
+									Bullet* bullet = new Bullet("key.png", towers.at(i)->getPosition(), enemyPosition);
 
-							bullets.push_back(bullet);
+									bullets.push_back(bullet);
 
-							towers.at(i)->setCanFire(false);
+									towers.at(i)->setCanFire(false);
+								}
+							}
 						}
 					}
-				}
-			}
-		}
+
+					if (base.getHP() <= 0) 
+						pause = true;
+			
+				} else 
+					gameover.drawScreen(window);			
+			} 
 				
 		while (window.pollEvent(event))	{
 

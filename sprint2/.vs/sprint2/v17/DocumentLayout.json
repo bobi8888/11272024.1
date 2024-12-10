@@ -3,28 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\1stBuild\\Desktop\\1127test\\take2\\GitRemoteCon\\sprint2\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{98FD350E-4B15-4C60-9760-F1960BE1DAF8}|sprint2\\sprint2.vcxproj|C:\\Users\\1stBuild\\Desktop\\1127test\\take2\\GitRemoteCon\\sprint2\\sprint2\\Base.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{98FD350E-4B15-4C60-9760-F1960BE1DAF8}|sprint2\\sprint2.vcxproj|solutionrelative:sprint2\\Base.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{98FD350E-4B15-4C60-9760-F1960BE1DAF8}|sprint2\\sprint2.vcxproj|C:\\Users\\1stBuild\\Desktop\\1127test\\take2\\GitRemoteCon\\sprint2\\sprint2\\GameScreen.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{98FD350E-4B15-4C60-9760-F1960BE1DAF8}|sprint2\\sprint2.vcxproj|solutionrelative:sprint2\\GameScreen.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{98FD350E-4B15-4C60-9760-F1960BE1DAF8}|sprint2\\sprint2.vcxproj|C:\\Users\\1stBuild\\Desktop\\1127test\\take2\\GitRemoteCon\\sprint2\\sprint2\\Base.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{98FD350E-4B15-4C60-9760-F1960BE1DAF8}|sprint2\\sprint2.vcxproj|solutionrelative:sprint2\\Base.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{98FD350E-4B15-4C60-9760-F1960BE1DAF8}|sprint2\\sprint2.vcxproj|C:\\Users\\1stBuild\\Desktop\\1127test\\take2\\GitRemoteCon\\sprint2\\sprint2\\Wave.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{98FD350E-4B15-4C60-9760-F1960BE1DAF8}|sprint2\\sprint2.vcxproj|solutionrelative:sprint2\\Wave.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{98FD350E-4B15-4C60-9760-F1960BE1DAF8}|sprint2\\sprint2.vcxproj|C:\\Users\\1stBuild\\Desktop\\1127test\\take2\\GitRemoteCon\\sprint2\\sprint2\\Wave.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{98FD350E-4B15-4C60-9760-F1960BE1DAF8}|sprint2\\sprint2.vcxproj|solutionrelative:sprint2\\Wave.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{98FD350E-4B15-4C60-9760-F1960BE1DAF8}|sprint2\\sprint2.vcxproj|C:\\Users\\1stBuild\\Desktop\\1127test\\take2\\GitRemoteCon\\sprint2\\sprint2\\Bullet.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{98FD350E-4B15-4C60-9760-F1960BE1DAF8}|sprint2\\sprint2.vcxproj|solutionrelative:sprint2\\Bullet.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{98FD350E-4B15-4C60-9760-F1960BE1DAF8}|sprint2\\sprint2.vcxproj|C:\\Users\\1stBuild\\Desktop\\1127test\\take2\\GitRemoteCon\\sprint2\\sprint2\\GameScreen.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{98FD350E-4B15-4C60-9760-F1960BE1DAF8}|sprint2\\sprint2.vcxproj|solutionrelative:sprint2\\GameScreen.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{98FD350E-4B15-4C60-9760-F1960BE1DAF8}|sprint2\\sprint2.vcxproj|C:\\Users\\1stBuild\\Desktop\\1127test\\take2\\GitRemoteCon\\sprint2\\sprint2\\sprint2.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{98FD350E-4B15-4C60-9760-F1960BE1DAF8}|sprint2\\sprint2.vcxproj|solutionrelative:sprint2\\sprint2.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{98FD350E-4B15-4C60-9760-F1960BE1DAF8}|sprint2\\sprint2.vcxproj|C:\\Users\\1stBuild\\Desktop\\1127test\\take2\\GitRemoteCon\\sprint2\\sprint2\\Wallet.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{98FD350E-4B15-4C60-9760-F1960BE1DAF8}|sprint2\\sprint2.vcxproj|solutionrelative:sprint2\\Wallet.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{98FD350E-4B15-4C60-9760-F1960BE1DAF8}|sprint2\\sprint2.vcxproj|C:\\Users\\1stBuild\\Desktop\\1127test\\take2\\GitRemoteCon\\sprint2\\sprint2\\Base.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{98FD350E-4B15-4C60-9760-F1960BE1DAF8}|sprint2\\sprint2.vcxproj|solutionrelative:sprint2\\Base.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,17 +30,17 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 15,
+          "SelectedChildIndex": 14,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 2,
               "Title": "sprint2.cpp",
               "DocumentMoniker": "C:\\Users\\1stBuild\\Desktop\\1127test\\take2\\GitRemoteCon\\sprint2\\sprint2\\sprint2.cpp",
               "RelativeDocumentMoniker": "sprint2\\sprint2.cpp",
               "ToolTip": "C:\\Users\\1stBuild\\Desktop\\1127test\\take2\\GitRemoteCon\\sprint2\\sprint2\\sprint2.cpp",
               "RelativeToolTip": "sprint2\\sprint2.cpp",
-              "ViewState": "AgIAAGQAAAAAAAAAAAAAAAYBAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAEkAAAAAAAAAAAAAAFkAAAB7AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-11-27T17:10:27.078Z",
               "IsPinned": true,
@@ -96,67 +92,54 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Bullet.cpp",
-              "DocumentMoniker": "C:\\Users\\1stBuild\\Desktop\\1127test\\take2\\GitRemoteCon\\sprint2\\sprint2\\Bullet.cpp",
-              "RelativeDocumentMoniker": "sprint2\\Bullet.cpp",
-              "ToolTip": "C:\\Users\\1stBuild\\Desktop\\1127test\\take2\\GitRemoteCon\\sprint2\\sprint2\\Bullet.cpp",
-              "RelativeToolTip": "sprint2\\Bullet.cpp",
-              "ViewState": "AgIAAAcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-12-10T20:28:18.944Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "Wave.h",
-              "DocumentMoniker": "C:\\Users\\1stBuild\\Desktop\\1127test\\take2\\GitRemoteCon\\sprint2\\sprint2\\Wave.h",
-              "RelativeDocumentMoniker": "sprint2\\Wave.h",
-              "ToolTip": "C:\\Users\\1stBuild\\Desktop\\1127test\\take2\\GitRemoteCon\\sprint2\\sprint2\\Wave.h",
-              "RelativeToolTip": "sprint2\\Wave.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAA1AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-12-10T19:41:40.938Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Wave.cpp",
-              "DocumentMoniker": "C:\\Users\\1stBuild\\Desktop\\1127test\\take2\\GitRemoteCon\\sprint2\\sprint2\\Wave.cpp",
-              "RelativeDocumentMoniker": "sprint2\\Wave.cpp",
-              "ToolTip": "C:\\Users\\1stBuild\\Desktop\\1127test\\take2\\GitRemoteCon\\sprint2\\sprint2\\Wave.cpp",
-              "RelativeToolTip": "sprint2\\Wave.cpp",
-              "ViewState": "AgIAAD0AAAAAAAAAAAAAAIQAAAAaAAAAAAAAAA==",
+              "Title": "Wallet.cpp",
+              "DocumentMoniker": "C:\\Users\\1stBuild\\Desktop\\1127test\\take2\\GitRemoteCon\\sprint2\\sprint2\\Wallet.cpp",
+              "RelativeDocumentMoniker": "sprint2\\Wallet.cpp",
+              "ToolTip": "C:\\Users\\1stBuild\\Desktop\\1127test\\take2\\GitRemoteCon\\sprint2\\sprint2\\Wallet.cpp",
+              "RelativeToolTip": "sprint2\\Wallet.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-12-10T19:18:19.837Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Base.cpp",
-              "DocumentMoniker": "C:\\Users\\1stBuild\\Desktop\\1127test\\take2\\GitRemoteCon\\sprint2\\sprint2\\Base.cpp",
-              "RelativeDocumentMoniker": "sprint2\\Base.cpp",
-              "ToolTip": "C:\\Users\\1stBuild\\Desktop\\1127test\\take2\\GitRemoteCon\\sprint2\\sprint2\\Base.cpp",
-              "RelativeToolTip": "sprint2\\Base.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAATAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-12-10T18:56:32.146Z",
+              "WhenOpened": "2024-12-10T23:12:58.966Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "GameScreen.cpp",
+              "DocumentMoniker": "C:\\Users\\1stBuild\\Desktop\\1127test\\take2\\GitRemoteCon\\sprint2\\sprint2\\GameScreen.cpp",
+              "RelativeDocumentMoniker": "sprint2\\GameScreen.cpp",
+              "ToolTip": "C:\\Users\\1stBuild\\Desktop\\1127test\\take2\\GitRemoteCon\\sprint2\\sprint2\\GameScreen.cpp",
+              "RelativeToolTip": "sprint2\\GameScreen.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-12-10T23:12:40.248Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "GameScreen.h",
+              "DocumentMoniker": "C:\\Users\\1stBuild\\Desktop\\1127test\\take2\\GitRemoteCon\\sprint2\\sprint2\\GameScreen.h",
+              "RelativeDocumentMoniker": "sprint2\\GameScreen.h",
+              "ToolTip": "C:\\Users\\1stBuild\\Desktop\\1127test\\take2\\GitRemoteCon\\sprint2\\sprint2\\GameScreen.h",
+              "RelativeToolTip": "sprint2\\GameScreen.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-12-10T23:12:02.639Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "Base.h",
               "DocumentMoniker": "C:\\Users\\1stBuild\\Desktop\\1127test\\take2\\GitRemoteCon\\sprint2\\sprint2\\Base.h",
               "RelativeDocumentMoniker": "sprint2\\Base.h",
               "ToolTip": "C:\\Users\\1stBuild\\Desktop\\1127test\\take2\\GitRemoteCon\\sprint2\\sprint2\\Base.h",
               "RelativeToolTip": "sprint2\\Base.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAIAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-12-10T18:54:48.475Z",
+              "WhenOpened": "2024-12-10T23:05:54.655Z",
               "EditorCaption": ""
             }
           ]

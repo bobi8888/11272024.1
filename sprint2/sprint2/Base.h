@@ -5,7 +5,7 @@ class Base {
 	private:
 		sf::Texture Texture;
 		sf::Sprite Sprite;
-		int HP = 500;
+		int HP = 5;
 		sf::RectangleShape HealthBar;
 		sf::RectangleShape DamageBar;
 
