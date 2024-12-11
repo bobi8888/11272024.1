@@ -9,6 +9,7 @@
 #include "Wallet.h"
 #include "Base.h"
 #include "GameScreen.h"
+#include "Button.h"
 
 //class MyClass { 
 //	public: 
@@ -88,6 +89,7 @@ vector <Bullet*> bullets;
 //create background class so that sprites can deposit death spots on the background
 GameScreen background("intoRed.png", centerOfScreen);
 GameScreen gameover("centerNoChessPiece.png", centerOfScreen, "RobotoCondensed-Regular.ttf", 50, centerOfScreen, "Game Over");
+gameover.addButton("startSprite.png", centerOfScreen);
 
 Wallet Wallet("RobotoCondensed-Regular.ttf", 40, sf::Vector2f(centerOfScreen.x, 25));
 bool pause = false;
@@ -258,8 +260,14 @@ bool pause = false;
 					if (base.getHP() <= 0) 
 						pause = true;
 			
-				} else 
-					gameover.drawScreen(window);			
+				} else {
+
+					gameover.drawScreen(window);	
+					
+					if (gameover.getButton(0).containsMouse(myMouse->getPosition(window)))
+							cout << "Yeah! \n";
+					
+				}
 			} 
 				
 		while (window.pollEvent(event))	{
